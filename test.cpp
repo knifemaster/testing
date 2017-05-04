@@ -4,11 +4,12 @@
 
 int main()
 {
+    int i = 10;
+
     std::string s = "test";
     std::vector<int> v;
     v.push_back(1);
     v.push_back(2);
     
-    std::cout << s << std::endl;
-    std::cout << i << std::endl;
+    std::cout << s << i << std::endl;
 }
