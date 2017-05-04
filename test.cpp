@@ -4,6 +4,8 @@
 
 int main()
 {
+    int i = 10;
+
     std::string s = "test";
-    std::cout << s << std::endl;
+    std::cout << s << i << std::endl;
 }
