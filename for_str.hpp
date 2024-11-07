@@ -1,0 +1,4 @@
+
+namespace ctre {
+	struct SecondStruct {};
+}
