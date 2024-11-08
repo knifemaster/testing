@@ -21,8 +21,8 @@ int main() {
 	MyStruct my_struct;
 	ctre::SecondStruct second_struct;
 
-	std::cout << get_type<MyStruct>(my_struct) << std::endl;
-	std::cout << get_type<ctre::SecondStruct>(second_struct) << std::endl;
+	std::cout << get_type(my_struct) << std::endl;
+	std::cout << get_type(second_struct) << std::endl;
 
 	std::string hello = "Hello world";
 
