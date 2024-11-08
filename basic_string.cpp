@@ -241,7 +241,7 @@ int main() {
 
 	evaluate(rectangle, triangle, square);
 	std::cout << "Hello world" << std::endl;
-
+		
 	print_list_types(rectangle, triangle, square, line, circle);
 
 //	print_structs(line);

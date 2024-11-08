@@ -17,13 +17,18 @@ std::string get_type(T& my_type) {
 	return "";
 }
 
+template <typename ...Content>
+void print_list_types(Content ...content) {
+	(std::cout << ... << get_type(content)) << "\n";
+}
+
 int main() {
 	MyStruct my_struct;
 	ctre::SecondStruct second_struct;
 
 	std::cout << get_type(my_struct) << std::endl;
 	std::cout << get_type(second_struct) << std::endl;
-
+	print_list_types(my_struct, second_struct);
 	std::string hello = "Hello world";
 
 	for (const auto& character : hello) {

@@ -21,7 +21,27 @@ T createT(Args&& ...args) {
 	return T(std::forward<Args>(args) ...);
 }
 
+template<typename T>
+T Sum(T arg) {
+	return arg;
+}
+
+template <typename T, typename... Args>
+T Sum(T start, Args... args) {
+	return start + Sum(args...);
+}
+
+template <typename ... Args> size_t f(Args ... args) {
+	return sizeof...(args);
+}
+
 int main() {
+	MyType t(32, 3.2, true);
+	MyType t2(42, 4.2, true);
+	std::cout << f(t, t2) << std::endl;
+
+	std::cout << Sum(1, 2, 3, 4, 5) << std::endl;
+
 	int lvalue{2024};
 	std::string str = "Hello world";
 	int uniqZero = createT<int>();
