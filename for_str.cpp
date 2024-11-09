@@ -7,10 +7,10 @@ struct MyStruct{};
 
 template <typename T> 
 std::string get_type(T& my_type) {
-	if (std::is_same_v<T, MyStruct>) {
+	if (std::is_same<T, MyStruct>::value) {
 		return "MyStruct";
 	}
-	if (std::is_same_v<T, ctre::SecondStruct>) {
+	if (std::is_same<T, ctre::SecondStruct>::value) {
 		return "SecondStruct";
 	}
 
