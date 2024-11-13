@@ -1,19 +1,25 @@
 #include <iostream>
 #include <type_traits>
+#include <utility>
 
-constexpr static auto exec() noexcept {
-	return 10;
+void exec(int& value) {
+	std::cout << value << std::endl;
 }
 
-
-template <typename... Args> constexpr auto try_extract(Args && ... args) {
-	exec(std::forward<Args>(args)...);	
+void exec(int&& value) {
+	std::cout << value << std::endl;
 }
 
-
+template <typename T>
+void extract(T&& arg) {
+	exec(std::forward<T>(arg));	
+}
 
 int main() {
 
+	int a = 10;
+	extract(a);
+	extract(100);
 
-
+	return 0;
 }
