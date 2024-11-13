@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include <string>
-
+#include <utility>
 
 struct singleline { };
 struct multiline { };
@@ -20,9 +20,8 @@ template <size_t Limit> constexpr bool less_than(size_t i) noexcept {
 	}
 }
 
-template <size_t Limit>constexpr size_t out_limit(std::string& str) noexcept {
-	
-	return str.size();
+template <size_t Limit>constexpr std::pair<size_t, size_t> out_limit(std::string& str) noexcept {
+	return std::make_pair(Limit, str.size());
 }
 
 struct flags {
@@ -56,13 +55,16 @@ int main() {
 
 	flags fl;
 
-	using word_chars = set<char_range<'A', 'Z'>>;
-	word_chars v;
-       	v.match_char('A', fl);
+	//using word_chars = set<char_range<'A', 'Z'>>;
+	//word_chars v;
+       	//v.match_char('A', fl);
 
 	size_t i {0};
 	std::string str = "Hello world";
-	std::cout << less_than<32>(i);
-	std::cout << out_limit<56>(str);
+	std::cout <<std::boolalpha << less_than<32>(i) << std::endl;
+	
+	auto result = out_limit<56>(str);
+	auto [size1, size2] = result;	
+	std::cout << result.first << " - " << result.second;
 	return 0;
 }
