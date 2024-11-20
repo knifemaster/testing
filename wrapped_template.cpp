@@ -8,9 +8,9 @@
 
 template <typename T, typename U>
 struct example {
-	template <typename V>
+	template <size_t V>
 	static constexpr int get() {
-		return 42;
+		return V;
 	}
 
 };
@@ -18,7 +18,7 @@ struct example {
 
 int main() {
 
-	std::cout << example<int, float>::template get<double>() << std::endl;
+	std::cout << example<int, float>::template get<100>() << std::endl;
 
 
 
