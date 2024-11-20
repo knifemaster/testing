@@ -18,7 +18,8 @@ void calculate_first(Begin begin, Tail... tail) {
 
 }
 
-
 int main() {
+	
 	calculate_first(10, 25.25, "Hello world");
+	return 0;
 }
