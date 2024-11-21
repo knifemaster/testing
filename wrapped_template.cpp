@@ -26,7 +26,7 @@ constexpr int get_number(int number, int end) noexcept {
 
 }
 
-constexpr bool find_number_in_array(std::array<int, 9>& arr, int size, int number) noexcept {
+constexpr bool find_number_in_array(const std::array<int, 9>& arr, int size, int number) noexcept {
 	for (int i = 0; i < size; ++i) {
 		if (arr[i] == number) {
 			return true;
@@ -35,7 +35,31 @@ constexpr bool find_number_in_array(std::array<int, 9>& arr, int size, int numbe
 	return false;
 }
 
+class String {
+	const char* p;
+	size_t sz;
+
+	public:
+		template<size_t N>
+		constexpr String(const char(&a)[N]): p(a), sz(N - 1) {}
+
+		constexpr char operator[](size_t n) const {
+			return n < sz ? p[n] : throw std::out_of_range("");
+		}
+
+		constexpr size_t size() const { return sz; }
+};
+
+
 int main() {
+
+	const char* message = "Hello world";
+
+	String s("hello world");
+
+	std::cout << s[1] << std::endl;
+
+	std::cout << message << std::endl;
 
 	std::array<int, 9> arr {1, 2, 3, 4, 5, 6, 7, 8, 9};
 
