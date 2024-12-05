@@ -57,7 +57,7 @@ int main() {
 
 	String s("hello world");
 
-	std::cout << s[1] << std::endl;
+	std::cout << s[0] << s[1] << s[2] << s.size()<< std::endl;
 
 	std::cout << message << std::endl;
 
