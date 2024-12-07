@@ -20,8 +20,5 @@ int main() {
 	std::cout << std::boolalpha;
 	std::cout << "Numeric Type " << std::is_same<int, NumericType>::value << std::endl;
 
-	// declval
-	
-
 	return 0;
 }
