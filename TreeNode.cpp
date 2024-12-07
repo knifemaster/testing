@@ -23,7 +23,6 @@ struct TreeNode {
 		}
 
 	bool destruct_trees(TreeNode* root) {
-		//root->~TreeNode();
 		destruct_trees(root->left);
 		destruct_trees(root->right);
 		return true;
@@ -116,50 +115,6 @@ std::vector<TreeNode*> generate_trees(int n) {
 	TreeNode* right;
 
 
-
-	/*
-		if (n == 0) {
-			root = new TreeNode();
-			result.push_back(root);
-			return result;
-		}
-
-	    if (n == 1) {
-			root = new TreeNode(1);
-			result.push_back(root);
-			return result;
-		}
-
-		int mid = n/2;
-		TreeNode* left;
-		TreeNode* right;
-	*/
-/*
-		if (n > 1) {
-
-			for (size_t index = 1; index <= n; index++) {
-				if (mid > left->val) {
-					
-					//make right tree
-				}
-				else {
-					//make right tree
-				}
-
-				
-				root = new TreeNode();
-				
-				root->visit_nodes(root);
-				if (root->left != nullptr) {
-					// entry to left node
-				}
-				if (root->right != nullptr) {
-					// entry to right node
-				}
-				
-			}
-		}
-*/
 	return result;
 
 }
