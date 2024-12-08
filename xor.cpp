@@ -26,7 +26,13 @@ class Person {
 
 
 int sub_array_sum(std::vector<int>& nums, int k) {
-	
+	std::unordered_map<int, int> vec_sums;
+
+	for (const auto& number : nums) {
+		//number
+		std::cout << number << std::endl;
+	}
+
 	std::cout << "sub array sum" << std::endl;
 	return 1;
 }
