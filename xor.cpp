@@ -2,10 +2,8 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include <stringstream>
 #include <unordered_map>
 #include <stack>
-#include <type_info>
 #include <cmath>
 #include <optional>
 #include <chrono>
@@ -27,7 +25,21 @@ class Person {
 };
 
 
+int sub_array_sum(std::vector<int>& nums, int k) {
+	
+	std::cout << "sub array sum" << std::endl;
+	return 1;
+}
+
+
 int main() {
+
+	std::vector<int> nums {1, 2, 3};
+	int k_param = 3;
+
+	int result = sub_array_sum(nums, k_param);
+
+
 
 	std::string jannet = "jannet";
 	std::string Juliet = "juliet";
