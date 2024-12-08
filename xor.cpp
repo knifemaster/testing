@@ -26,15 +26,19 @@ class Person {
 
 
 int sub_array_sum(std::vector<int>& nums, int k) {
-	std::unordered_map<int, int> vec_sums;
+	std::unordered_map<int, int> map_sums;
+
+	map_sums[0] = 1;
+	int result = 0;
+	int sum = 0; 
 
 	for (const auto& number : nums) {
-		//number
-		std::cout << number << std::endl;
+		sum += number;
+		result += map_sums[sum - k];
+		map_sums[sum]++;
 	}
 
-	std::cout << "sub array sum" << std::endl;
-	return 1;
+	return result;
 }
 
 
@@ -43,9 +47,13 @@ int main() {
 	std::vector<int> nums {1, 2, 3};
 	int k_param = 3;
 
+	std::vector<int> nums2 {1, 1, 1};
+	int k2_param = 2;
+
 	int result = sub_array_sum(nums, k_param);
-
-
+	
+	std::cout << "result is " << result << std::endl;
+	std::cout << "result is " << sub_array_sum(nums2, k2_param) << std::endl;
 
 	std::string jannet = "jannet";
 	std::string Juliet = "juliet";
