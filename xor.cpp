@@ -59,9 +59,7 @@ int factorial(int n) {
 int next_greater_element(int n) {
 
 	std::string str_number = std::to_string(n);
-	//std::sort(str_number.begin(), str_number.end(), std::greater<int>());
-	int max_value = std::stoi(str_number);
-	
+
 	std::vector<int> permutated_numbers;
 	permutated_numbers.reserve(factorial(str_number.size()));
 
@@ -71,8 +69,6 @@ int next_greater_element(int n) {
 	}
 
 	std::sort(permutated_numbers.begin(), permutated_numbers.end());
-
-	std::cout << "min element" << permutated_numbers[0] << std::endl;
 
 	for (const auto& num : permutated_numbers) {
 		if (num > n) {
