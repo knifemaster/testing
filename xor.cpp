@@ -42,7 +42,27 @@ int sub_array_sum(std::vector<int>& nums, int k) {
 }
 
 
+int next_greater_element(int n) {
+
+	std::string str_number = std::to_string(n);
+	std::sort(str_number.begin(), str_number.end(), std::greater<int>());
+	int max_value = std::stoi(str_number);
+
+	if (max_value > n) {
+		return max_value;
+	}
+	else {
+		return -1;
+	}
+}
+
+
 int main() {
+
+	int numbr = 12;
+	auto res = next_greater_element(numbr);
+
+	std::cout << "result is" << res << std::endl;
 
 	std::vector<int> nums {1, 2, 3};
 	int k_param = 3;
