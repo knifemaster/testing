@@ -45,8 +45,12 @@ int sub_array_sum(std::vector<int>& nums, int k) {
 int next_greater_element(int n) {
 
 	std::string str_number = std::to_string(n);
-	std::sort(str_number.begin(), str_number.end(), std::greater<int>());
+	//std::sort(str_number.begin(), str_number.end(), std::greater<int>());
 	int max_value = std::stoi(str_number);
+	
+	while(std::next_permutation(str_number.begin(), str_number.end())) {
+		std::cout << "|" << str_number << std::endl;
+	}
 
 	if (max_value > n) {
 		return max_value;
