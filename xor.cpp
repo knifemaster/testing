@@ -48,9 +48,16 @@ int next_greater_element(int n) {
 	//std::sort(str_number.begin(), str_number.end(), std::greater<int>());
 	int max_value = std::stoi(str_number);
 	
+	std::vector<int> permutated_numbers;
+
 	while(std::next_permutation(str_number.begin(), str_number.end())) {
+		permutated_numbers.push_back(std::stoi(str_number));
 		std::cout << "|" << str_number << std::endl;
 	}
+
+	std::sort(permutated_numbers.begin(), permutated_numbers.end());
+
+	std::cout << "min element" << permutated_numbers[0] << std::endl;
 
 	if (max_value > n) {
 		return max_value;
