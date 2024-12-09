@@ -59,12 +59,14 @@ int next_greater_element(int n) {
 
 	std::cout << "min element" << permutated_numbers[0] << std::endl;
 
-	if (max_value > n) {
-		return max_value;
+	for (const auto& num : permutated_numbers) {
+		if (num > n) {
+			return num;
+		}
 	}
-	else {
-		return -1;
-	}
+	
+	return -1;
+
 }
 
 
