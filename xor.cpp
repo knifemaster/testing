@@ -41,6 +41,20 @@ int sub_array_sum(std::vector<int>& nums, int k) {
 	return result;
 }
 
+int factorial(int n) {
+	
+	if (n == 0 | n == 1) {
+		return 1;
+	}
+
+	int fact = 1;
+	
+	for (size_t i = 0; i <= n; ++i) {
+		fact *= i;
+	}
+	return fact;
+
+}
 
 int next_greater_element(int n) {
 
@@ -49,6 +63,7 @@ int next_greater_element(int n) {
 	int max_value = std::stoi(str_number);
 	
 	std::vector<int> permutated_numbers;
+	permutated_numbers.reserve(factorial(str_number.size()));
 
 	while(std::next_permutation(str_number.begin(), str_number.end())) {
 		permutated_numbers.push_back(std::stoi(str_number));
