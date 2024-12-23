@@ -9,6 +9,7 @@
 struct ListNode {
 	int val;
 	ListNode *next;
+	//shared_ptr<ListNode> next;
 	ListNode() : val(0), next(nullptr) {}
 	ListNode(int x) : val(x), next(nullptr) {}
 	ListNode(int x, ListNode *next) : val(x), next(next) {}
@@ -27,7 +28,7 @@ ListNode* swapPairs(ListNode* head) {
 	}
 
 	std::cout << "value " << head->val << std::endl;
-	ListNode* h = head->next;
+	ListNode* h = head->next->next;
 	//ListNode* temp = head->next;
 	//ListNode* temp_head = head;
 
@@ -36,14 +37,18 @@ ListNode* swapPairs(ListNode* head) {
 		ListNode* temp_head = head;
 		
 		head = head->next;
-		head->next = temp_head;	
+		head->next = temp_head;
+
+		h = temp_next;	
 	}
 	recurse_depth += 1;
 
 	while (h != nullptr) {
 		std::cout << "recurse depth" << recurse_depth << std::endl;
 		//std::cout << head->val << std::endl;
-		return swapPairs(h);
+		if (h->next != nullptr) {
+			return swapPairs(h->next);
+		}
 	}
 	
 	return new ListNode(1);
@@ -56,6 +61,8 @@ ListNode* createListNode(ListNode* head) {
 	return node;
 
 }
+
+std::vector<ListNode*> vec_nodes;
 
 int main() {
 
