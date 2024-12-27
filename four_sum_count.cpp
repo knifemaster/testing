@@ -9,7 +9,26 @@ int four_sum_count(std::vector<int>& nums1, std::vector<int>& nums2, std::vector
 
 	int sum = 0;
 
-	int count = 0;
+	int result = 0;
+	std::unordered_map<int, int> count;
+	
+	for (const int a : nums1) {
+		for (const int b : nums2) {
+		++count[a + b];
+		}
+	}
+
+	for (const int c : nums3) {
+		for (const int d : nums4) {
+			if (const auto it = count.find(-c-d); it != count.cend())
+				result += it->second;
+		}
+	}
+
+	return result;
+
+
+	/* brute force
 	for (size_t i = 0; i < nums1.size(); ++i) {
 	
 		for (size_t j = 0; j < nums2.size(); ++j) {
@@ -34,10 +53,10 @@ int four_sum_count(std::vector<int>& nums1, std::vector<int>& nums2, std::vector
 		
 		}
 	
-	}
+	}*/
 
 
-	return count;
+//	return count;
 }
 
 int main() {
@@ -47,7 +66,7 @@ int main() {
 	std::vector<int> n3 {-1, 2};
 	std::vector<int> n4 {0, 2};
 
-	four_sum_count(n1, n2, n3, n4);
+	std::cout << "result is " << four_sum_count(n1, n2, n3, n4) << std::endl;
 
 
 	return 0;
