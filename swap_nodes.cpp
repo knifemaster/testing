@@ -27,26 +27,26 @@ ListNode* swapPairs(ListNode* head) {
 		return new ListNode(0);
 	}
 
-	std::cout << "value " << head->val << std::endl;
-	ListNode* h = head->next->next;
-	//ListNode* temp = head->next;
-	//ListNode* temp_head = head;
-
+	//std::cout << "value " << head->val << std::endl;
+	//ListNode* h = head->next->next;
+	
 	//if (recurse_depth % 2 == 0) {
-		ListNode* temp_next = head->next;
-		ListNode* temp_head = head;
+	ListNode* temp_next = head->next;
+	ListNode* temp_head = head;
 		
-		head = head->next;
-		head->next = temp_head;
+	head = head->next;
+	head->next = temp_head;
 
-		h = temp_next;	
+	//	h = temp_next;	
 	//}
-	recurse_depth += 1;
+	//recurse_depth += 1;
+
+	auto h = temp_next->next;
 
 	while (h != nullptr) {
 		std::cout << "recurse depth" << recurse_depth << std::endl;
 		//std::cout << head->val << std::endl;
-		if (h->next != nullptr) {
+		if (h != nullptr) {
 			return swapPairs(head->next);
 		}
 	}
