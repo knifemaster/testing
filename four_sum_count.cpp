@@ -12,14 +12,14 @@ int four_sum_count(std::vector<int>& nums1, std::vector<int>& nums2, std::vector
 	int result = 0;
 	std::unordered_map<int, int> count;
 	
-	for (const int a : nums1) {
-		for (const int b : nums2) {
+	for (const int& a : nums1) {
+		for (const int& b : nums2) {
 		++count[a + b];
 		}
 	}
 
-	for (const int c : nums3) {
-		for (const int d : nums4) {
+	for (const int& c : nums3) {
+		for (const int& d : nums4) {
 			if (const auto it = count.find(-c-d); it != count.cend())
 				result += it->second;
 		}
