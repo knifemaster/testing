@@ -35,11 +35,11 @@ void foo( unsigned int msecs )
     std::this_thread::sleep_for( std::chrono::milliseconds(msecs) ) ;
 }
 
-
 int main()
-    auto future = std::async( std::launch::async, [] { return stop_watch::time_it( foo, 100000); } ) ;
+{
+    auto future = std::async( std::launch::async, [] { return stop_watch::time_it( foo, 2345 ) ; } ) ;
 
-    while( future.wait_for( std::chrono::milliseconds(1000) ) != std::future_status::ready )
+    while( future.wait_for( std::chrono::milliseconds(300) ) != std::future_status::ready )
         std::cout << "waiting... " << std::flush ;
 
     std::cout << " for " << future.get() << " milliseconds\n" ;
