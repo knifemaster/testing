@@ -4,7 +4,7 @@
 #include <cmath>
 #include <vector>
 #include <chrono>
-
+#include <functional>
 
 void worker(int n) {
 	std::cout << "worker thread:" << std::this_thread::get_id() << std::endl;
@@ -12,6 +12,8 @@ void worker(int n) {
 	for (int i = 0; i < n; i ++) {
 		std::pow(434,54);
 	}
+
+	//return std::this_thread::get_id();
 
 }
 
@@ -23,7 +25,7 @@ int main() {
 
 	std::vector<std::future<void>> futures;
 
-	int nLoops = 10;int nThreads = 3;
+	int nLoops = 10; int nThreads = 3;
 
 	for (int i = 0; i < nThreads; i++) {
 		futures.emplace_back(std::async(worker, nLoops));
@@ -32,7 +34,9 @@ int main() {
 
 	for (const std::future<void>& ftr : futures ) {
 		ftr.wait();
-	
+		std::cout << "wait future" << std::endl;
+		//std::future<int> result = ftr.get_future();
+		//std::cout << result.get() << std::endl;	
 	}
 
 	std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
