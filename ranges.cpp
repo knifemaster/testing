@@ -46,5 +46,16 @@ int main() {
 		std::cout << number << '\n';
 	}
 
+
+	std::vector<int> data = {10, 20, 30, 40, 50, 60, 70};
+	auto first_five_elements = data | std::views::take(5) | std::views::transform([](int x){ return x*10;});
+
+	for (const int& number : first_five_elements) {
+		std::cout << number << '\t';
+	}
+	std::cout << '\n';
+
+
+
 	return 0;
 }
