@@ -39,5 +39,12 @@ int main() {
 		std::cout << w << '\t';
 	}
 
+
+	std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8};
+	auto result = numbers | std::views::filter([](int x) {return x % 2 == 0;}) | std::views::transform([](int x){ return x*x;});
+	for (const int& number : result) {
+		std::cout << number << '\n';
+	}
+
 	return 0;
 }
