@@ -19,18 +19,17 @@ int main() {
 	}
 
 
+
 	std::string name("HE LL O W O RL D");
-
     	auto split_view = std::ranges::views::split(name, ' ');
-
-    
+  
     	for (const auto& subrange : split_view) {
         	std::cout << std::string_view(subrange.begin(), subrange.end()) << '\n';
     	}
 
 
-	std::string words("Hello world good evening");
 
+	std::string words("Hello world good evening");
 	auto splitted_words = words | std::ranges::views::split(' ');
 
 	for (const auto& word : splitted_words) {
@@ -40,11 +39,13 @@ int main() {
 	}
 
 
+
 	std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8};
 	auto result = numbers | std::views::filter([](int x) {return x % 2 == 0;}) | std::views::transform([](int x){ return x*x;});
 	for (const int& number : result) {
 		std::cout << number << '\n';
 	}
+
 
 
 	std::vector<int> data = {10, 20, 30, 40, 50, 60, 70};
@@ -54,6 +55,17 @@ int main() {
 		std::cout << number << '\t';
 	}
 	std::cout << '\n';
+
+
+	
+	std::vector<int> data_for_drop = {11, 22, 33, 44, 55, 66, 77, 88};
+	auto skipped_data = data_for_drop | std::views::drop(3);
+
+	for (const int& number : skipped_data) {
+		std::cout << number << '\t';
+	}
+	std::cout << '\n';
+
 
 
 
