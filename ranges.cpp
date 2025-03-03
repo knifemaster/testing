@@ -67,6 +67,16 @@ int main() {
 	std::cout << '\n';
 
 
+	
+	std::string text = "Hello world Hello WORLD";
+	auto reversed = text | std::views::reverse;
+
+	std::cout << "reversed text";
+	for (char character : reversed) {
+		std::cout << character << '\n';
+	}
+
+
 
 
 	return 0;
