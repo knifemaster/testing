@@ -29,7 +29,15 @@ int main() {
     	}
 
 
+	std::string words("Hello world good evening");
 
+	auto splitted_words = words | std::ranges::views::split(' ');
+
+	for (const auto& word : splitted_words) {
+		//std::cout << std::string_view(word.begin(), word.end()) << '\n';
+		std::string w(word.begin(), word.end());
+		std::cout << w << '\t';
+	}
 
 	return 0;
 }
