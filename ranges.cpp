@@ -4,6 +4,7 @@
 #include <ranges>
 #include <vector>
 #include <algorithm>
+#include <unordered_map>
 
 int main() {
 
@@ -91,6 +92,30 @@ int main() {
 	for (int num : data_num) {
 		std::cout << num << " ";
 	}
+	std::cout << std::endl;
+
+
+	std::unordered_map<int, std::string> umap;
+	umap[1] = "one";
+	umap[2] = "two";
+	umap[5] = "five";
+	umap[8] = "eight";
+
+	auto key_views = std::views::keys(umap);
+	std::vector<int> keys {key_views.begin(), key_views.end()};
+	
+	for (int& key : keys) {
+		std::cout << key << " ";
+	}
+	std::cout << std::endl;
+
+
+	auto value_views = std::views::values(umap);
+	std::vector<std::string> values {value_views.begin(), value_views.end()};
+	for (std::string& value : values) {
+		std::cout << value << " ";
+	}
+	std::cout << std::endl;
 
 
 
