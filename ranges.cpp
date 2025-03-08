@@ -3,7 +3,7 @@
 #include <string_view>
 #include <ranges>
 #include <vector>
-
+#include <algorithm>
 
 int main() {
 
@@ -73,9 +73,24 @@ int main() {
 
 	std::cout << "reversed text";
 	for (char character : reversed) {
-		std::cout << character << '\n';
+		std::cout << character << "  ";
 	}
 
+
+
+	auto sequence = std::views::iota(1, 20);
+	for (int num : sequence) {
+		std::cout << num << " ";
+	}	
+
+
+	std::cout << std::endl;
+	std::vector<int> data_num = {5, 2, 8, 1, 7};
+	std::ranges::sort(data_num, std::greater{});
+
+	for (int num : data_num) {
+		std::cout << num << " ";
+	}
 
 
 
