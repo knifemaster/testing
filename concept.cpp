@@ -12,7 +12,21 @@ T square(T x) {
 }
 
 
+template<typename T>
+concept Addable = requires(T a, T b) {
+	{ a + b } -> std::convertible_to<T>;
+};
+
+template<Addable T>
+T add(T a, T b) {
+	return a + b;
+};
+
+
+
 int main() {
 
 	std::cout << square(5) << '\n';
+	std::cout << add(2, 2) << '\n';
+	std::cout << add(2.2, 3.3) << '\n';
 }
