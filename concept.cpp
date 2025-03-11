@@ -51,4 +51,7 @@ int main() {
 	std::vector<int> vec_data = {1, 2, 3, 4, 5, 6, 7};
 	print(vec_data.begin(), vec_data.end());
 
+	std::string str_data = "Hello world";
+	print(str_data.begin(), str_data.end());
+
 }
