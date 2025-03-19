@@ -47,6 +47,22 @@ class Person {
             return *this;
         }
 
-
+        ~Person() {
+            std::cout << "Destructor for " << name << "\n";
+        }
 
 };
+
+int main() {
+
+    Person p1("Alice", 25);
+    Person p2 = p1; // конструктор копирования
+    Person p3;
+    p3 = p1;    // оператор присваивания копированием
+    Person p4 = std::move(p1); // конструктор перемещения
+
+    Person p5;
+    p5 = std::move(p2); // оператор присваивания перемещением
+
+    return 0;
+}
