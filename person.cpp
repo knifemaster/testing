@@ -13,7 +13,7 @@ class Person {
             std::cout << "default constructor"<< '\n';
         }
 
-        Person(std::string name, int age) : name(std::move(name), age(age)) {
+        Person(std::string name, int age) : name(std::move(name)), age(age) {
             std::cout << "parametrized constructor" << '\n';
         }
 
@@ -30,7 +30,7 @@ class Person {
             return *this;
         }
 
-        Person(&& other) noexcept : name(std::move(other.name), age(other.age)) {
+        Person(Person&& other) noexcept : name(std::move(other.name)), age(other.age) {
             other.age = 0;
             std::cout << "move constructor" << "\n";
         }
