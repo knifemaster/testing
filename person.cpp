@@ -21,6 +21,15 @@ class Person {
             std::cout << "copy constructor" << "\n";
         }
 
+        Person& operator=(const Person& other) {
+            if (this != &other) {
+                name = other.name;
+                age = other.age;
+                std::cout << "copy assignment operator" << "\n";
+            }
+            return *this;
+        }
+
 
 
 };
