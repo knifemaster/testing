@@ -30,6 +30,11 @@ class Person {
             return *this;
         }
 
+        Person(&& other) noexcept : name(std::move(other.name), age(other.age)) {
+            other.age = 0;
+            std::cout << "move constructor" << "\n";
+        }
+
 
 
 };
