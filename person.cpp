@@ -10,8 +10,13 @@ class Person {
 	
 	public:
 		Person() : name("Unknown"), age(0) {
-			std::cout << "default constructor"
+			std::cout << "default constructor"<< '\n';
 		}
+
+		Person(std::string name, int age) : name(std::move(name), age(age)) {
+			std::cout << "parametrized constructor" << '\n';
+		}
+
 
 
 };
