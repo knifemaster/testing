@@ -35,6 +35,18 @@ class Person {
             std::cout << "move constructor" << "\n";
         }
 
+        Person& operator=(Person&& other) noexcept {
+            if (this != &other) {
+                name = std::move(other.name);
+                age = other.age;
+                other.age = 0;
+                std::cout << "move assignment operator" << "\n";
+
+            }
+
+            return *this;
+        }
+
 
 
 };
