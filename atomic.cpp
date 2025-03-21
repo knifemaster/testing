@@ -38,6 +38,17 @@ void thread_func4() {
     std::cout << "Value: " << value << std::endl;
 }
 
+
+std::atomic<int> z(0);
+
+void thread_func5() {
+    int expected = 0;
+    while (!z.compare_exchange_weak(expected, 42, std::memory_order_acq_rel)) {
+        std::cout <<"keep trying" << std::endl;
+    }
+}
+
+
 int main() {
 
     std::thread t(thread_func);
@@ -63,6 +74,12 @@ int main() {
     std::thread t4(thread_func4);
     t3.join();
     t4.join();
+
+
+    std::thread t5(thread_func5);
+    t5.join();
+    int val = z.load(std::memory_order_acquire);
+    std::cout << "Value: " << val << std::endl;
 
    
     return 0;
