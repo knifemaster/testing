@@ -3,26 +3,6 @@
 #include <algorithm>
 #include <numeric>
 
-
-bool makesquare(std::vector<int>& matchsticks) {
-    if (matchsticks.empty()) 
-        return false;
-
-    int total_length = std::accumulate(matchsticks.begin(), matchsticks.end(), 0);
-
-    if (total_length % 4 != 0) 
-        return false;
-
-    int target = total_length / 4;
-
-    std::sort(matchsticks.rbegin(), matchsticks.rend());
-
-    std::vector<int> sides(4, 0);
-
-    return backtrack(matchsticks, sides, 0, target);
-
-}
-
 bool backtrack(const std::vector<int>& matchsticks, std::vector<int>& sides, int index, int target) {
 
     if (index == matchsticks.size()) {
@@ -46,4 +26,37 @@ bool backtrack(const std::vector<int>& matchsticks, std::vector<int>& sides, int
     return false;
 }
 
+bool makesquare(std::vector<int>& matchsticks) {
+    if (matchsticks.empty()) 
+        return false;
 
+    int total_length = std::accumulate(matchsticks.begin(), matchsticks.end(), 0);
+
+    if (total_length % 4 != 0) 
+        return false;
+
+    int target = total_length / 4;
+
+    std::sort(matchsticks.rbegin(), matchsticks.rend());
+
+    std::vector<int> sides(4, 0);
+
+    return backtrack(matchsticks, sides, 0, target);
+
+}
+
+
+
+
+
+int main() {
+
+    std::vector<int> matchsticks1 = {1, 1, 2, 2, 2};
+
+    std::cout << (makesquare(matchsticks1) ? "true" : "false") << std::endl;
+
+    std::vector<int> matchsticks2 = {3, 3, 3, 3, 4};
+    std::cout << (makesquare(matchsticks2) ? "true" : "false") << std::endl;
+
+
+}
