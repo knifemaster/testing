@@ -7,6 +7,13 @@ void print_sum(int a, int b, int c) {
     std::cout << "Sum: " << a + b + c << std::endl;
 }
 
+class MyClass {
+    public:
+        void print_value(int x) const {
+            std::cout << "Value : " << x << std::endl;
+        }
+};
+
 int main() {
 
     std::vector<int> numbers = {1, 2, 3, 4, 5};
@@ -53,6 +60,13 @@ int main() {
 
     auto bound_function = std::bind(print_sum, 10, std::placeholders::_1, 20);
     bound_function(30);
+
+
+    std::vector<MyClass> objects = { MyClass(), MyClass(), MyClass() };
+    auto print_method = std::mem_fn(&MyClass::print_value);
+    for (const auto& obj : objects) {
+        print_method(obj, 42);
+    }
 
 
     return 0;
