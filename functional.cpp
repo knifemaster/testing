@@ -14,6 +14,20 @@ class MyClass {
         }
 };
 
+
+void print_message(const std::string& message) {
+    std::cout << "Message : " << message << std::endl;
+}
+
+
+class MyClassSecond {
+    public:
+        void greet(const std::string& name) const {
+            std::cout << "Hello, " << name << "!" << std::endl;
+        }    
+
+};
+
 int add(int a, int b) {
     return a + b;
 }
@@ -81,6 +95,15 @@ int main() {
     int result_composed_two = composed_function(4); // (4 + 2) * 3 = 18
     std::cout << "Result: " << result_composed_two << std::endl;
 
+
+    std::invoke(print_message, "Hello, World");
+    
+    MyClassSecond obj;
+    std::invoke(&MyClassSecond::greet, obj, "Alice");
+
+    auto lambda = [](int x) { return x * x; };
+    int res = std::invoke(lambda, 5);
+    std::cout << "Lambda result: " << res << std::endl;
 
     return 0;
 }
