@@ -3,6 +3,10 @@
 #include <algorithm>
 #include <functional>
 
+void print_sum(int a, int b, int c) {
+    std::cout << "Sum: " << a + b + c << std::endl;
+}
+
 int main() {
 
     std::vector<int> numbers = {1, 2, 3, 4, 5};
@@ -45,6 +49,10 @@ int main() {
 
     int result_composed = composed_function(5);
     std::cout << "Result: " << result_composed << std::endl;
+
+
+    auto bound_function = std::bind(print_sum, 10, std::placeholders::_1, 20);
+    bound_function(30);
 
 
     return 0;
