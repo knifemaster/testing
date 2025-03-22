@@ -37,5 +37,15 @@ int main() {
     std::cout << std::endl;
 
 
+    auto double_value = [](int n) { return n * 2; };
+    auto add_ten = [](int n) { return n + 10; };
+    auto composed_function = [&add_ten, &double_value](int n) {
+        return add_ten(double_value(n)); 
+    };
+
+    int result_composed = composed_function(5);
+    std::cout << "Result: " << result_composed << std::endl;
+
+
     return 0;
 }
