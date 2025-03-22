@@ -23,7 +23,18 @@ int main() {
     for (int n : squared) {
         std::cout << n << " ";
     }
+    std::cout << std::endl;
 
+
+    std::vector<int> even_numbers;
+
+    auto is_even = [](int n) { return n % 2 == 0; };
+    std::copy_if(numbers.begin(), numbers.end(), std::back_inserter(even_numbers), is_even);
+
+    for (int n : even_numbers) {
+        std::cout << n << " ";
+    }
+    std::cout << std::endl;
 
 
     return 0;
