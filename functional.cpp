@@ -36,6 +36,10 @@ int multiply(int a, int b) {
     return a * b;
 }
 
+int square(int x) {
+    return x * x;
+}
+
 int main() {
 
     std::vector<int> numbers = {1, 2, 3, 4, 5};
@@ -104,6 +108,14 @@ int main() {
     auto lambda = [](int x) { return x * x; };
     int res = std::invoke(lambda, 5);
     std::cout << "Lambda result: " << res << std::endl;
+
+
+    std::function<int(int)> func = square;
+    std::transform(numbers.begin(), numbers.end(), squared.begin(), func);
+
+    for (int n : squared) {
+        std::cout << n << " ";
+    }
 
     return 0;
 }
