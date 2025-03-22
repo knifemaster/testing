@@ -14,6 +14,14 @@ class MyClass {
         }
 };
 
+int add(int a, int b) {
+    return a + b;
+}
+
+int multiply(int a, int b) {
+    return a * b;
+}
+
 int main() {
 
     std::vector<int> numbers = {1, 2, 3, 4, 5};
@@ -67,6 +75,11 @@ int main() {
     for (const auto& obj : objects) {
         print_method(obj, 42);
     }
+
+
+    auto composed_function_two = std::bind(multiply, std::bind(add, std::placeholders::_1, 2), 3);
+    int result_composed_two = composed_function(4); // (4 + 2) * 3 = 18
+    std::cout << "Result: " << result_composed_two << std::endl;
 
 
     return 0;
