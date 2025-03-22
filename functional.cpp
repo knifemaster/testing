@@ -2,6 +2,8 @@
 #include <vector>
 #include <algorithm>
 #include <functional>
+#include <ranges>
+#include <numeric>
 
 void print_sum(int a, int b, int c) {
     std::cout << "Sum: " << a + b + c << std::endl;
@@ -116,6 +118,12 @@ int main() {
     for (int n : squared) {
         std::cout << n << " ";
     }
+
+    auto product = std::accumulate(numbers.begin(), numbers.end(), 1, [](int a, int b) {
+        return a * b;
+    });
+    std::cout << "Product: " << product << std::endl;
+
 
     return 0;
 }
