@@ -125,5 +125,13 @@ int main() {
     std::cout << "Product: " << product << std::endl;
 
 
+    std::vector<int> results(numbers.size());
+    std::function<int(int)> operation = [](int x) { return x * x + 2 * x + 1; };
+    std::transform(numbers.begin(), numbers.end(), results.begin(), operation);
+    for (int n : results) {
+        std::cout << n << " ";
+    }
+
+
     return 0;
 }
