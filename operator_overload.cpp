@@ -26,6 +26,13 @@ class MyClass {
             return MyClass(value / other.value);
         }
 
+        MyClass& operator=(const MyClass& other) {
+            if (this != &other) {
+                value = other.value;
+            }
+            return *this;
+        }
+
 
 
 };
