@@ -90,8 +90,14 @@ class MyClass {
             return value + x;
         }
 
-        operator int() const {
+        int operator int() const {
             return value;
         }
+
+        friend std::ostream& operator<<(std::ostream& os, const MyClass& obj) {
+            os << obj.value;
+            return os;
+        }
+
 
 };
