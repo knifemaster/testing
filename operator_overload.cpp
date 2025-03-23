@@ -73,5 +73,11 @@ class MyClass {
             return *this;
         }
 
+        MyClass operator--(int) { // Постфиксный декремент
+            MyClass temp = *this;
+            --(*this);
+            return temp;
+        }
+
 
 };
