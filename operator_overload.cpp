@@ -57,4 +57,9 @@ class MyClass {
             return value >= other.value;
         }
 
+        MyClass& operator++() { // Префиксный инкремент
+            ++value;
+            return *this;
+        }
+
 };
