@@ -19,4 +19,13 @@ class MyClass {
             return MyClass(value * other.value);
         }
 
+        MyClass operator/(const MyClass& other) const {
+            if (other.value == 0) {
+                throw std::runtime_error("Деление на ноль!");
+            }
+            return MyClass(value / other.value);
+        }
+
+
+
 };
