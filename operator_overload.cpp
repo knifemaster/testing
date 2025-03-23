@@ -85,4 +85,9 @@ class MyClass {
             }
             return value;
         }
+
+        int operator()(int x) const {
+            return value + x;
+        }
+
 };
