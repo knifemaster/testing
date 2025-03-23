@@ -90,4 +90,8 @@ class MyClass {
             return value + x;
         }
 
+        operator int() const {
+            return value;
+        }
+
 };
