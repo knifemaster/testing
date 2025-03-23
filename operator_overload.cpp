@@ -68,4 +68,10 @@ class MyClass {
             return temp;
         }
 
+        MyClass& operator--() { // Префиксный декремент
+            --value;
+            return *this;
+        }
+
+
 };
