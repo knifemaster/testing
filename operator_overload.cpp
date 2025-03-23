@@ -15,4 +15,8 @@ class MyClass {
             return MyClass(value - other.value);
         }
 
+        MyClass operator*(const MyClass& other) const {
+            return MyClass(value * other.value);
+        }
+
 };
