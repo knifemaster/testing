@@ -40,6 +40,9 @@ class MyClass {
         bool operator!=(const MyClass& other) const {
             return value != other.value;
         }
-
+        
+        bool operator<(const MyClass& other) const {
+            return value < other.value;
+        }
 
 };
