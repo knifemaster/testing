@@ -62,4 +62,10 @@ class MyClass {
             return *this;
         }
 
+        MyClass operator++(int) { // Постфиксный инкремент
+            MyClass temp = *this;
+            ++(*this);
+            return temp;
+        }
+
 };
