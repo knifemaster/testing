@@ -99,5 +99,10 @@ class MyClass {
             return os;
         }
 
+        friend std::istream& operator>>(std::istream& is, MyClass& obj) {
+            is >> obj.value;
+            return is;
+        }
+
 
 };
