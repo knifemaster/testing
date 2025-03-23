@@ -79,5 +79,10 @@ class MyClass {
             return temp;
         }
 
-
+        int& operator[](int index) {
+            if (index != 0) {
+                throw std::out_of_range("Индекс должен быть 0");
+            }
+            return value;
+        }
 };
