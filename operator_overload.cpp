@@ -32,6 +32,10 @@ class MyClass {
             }
             return *this;
         }
+        
+        bool operator==(const MyClass& other) const {
+            return value == other.value;
+        }
 
 
 
