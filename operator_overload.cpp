@@ -131,7 +131,13 @@ class SomeClass {
                 throw std::bad_alloc();
             return p;
         }
-}
+
+        void operator delete(void* p) noexcept {
+            std::cout << "Освобождена память для SomeClass\n";
+            std::free(p);
+        }
+};
+
 
 
 int main() {
