@@ -121,6 +121,19 @@ void operator delete(void* p) noexcept {
     std::free(p);
 }
 
+
+class SomeClass {
+    public:
+        void* operator new(std::size_t size) {
+            std::cout << "Выделено " << size << "Байт для SomeClass\n";
+            void* p = std::malloc(size);
+            if (!p) 
+                throw std::bad_alloc();
+            return p;
+        }
+}
+
+
 int main() {
 
     {
