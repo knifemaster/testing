@@ -122,10 +122,10 @@ void operator delete(void* p) noexcept {
 }
 
 
-class SomeClass {
+class SecondClass {
     public:
         void* operator new(std::size_t size) {
-            std::cout << "Выделено " << size << "Байт для SomeClass\n";
+            std::cout << "Выделено " << size << "Байт для SecondClass\n";
             void* p = std::malloc(size);
             if (!p) 
                 throw std::bad_alloc();
@@ -133,7 +133,7 @@ class SomeClass {
         }
 
         void operator delete(void* p) noexcept {
-            std::cout << "Освобождена память для SomeClass\n";
+            std::cout << "Освобождена память для SecondClass\n";
             std::free(p);
         }
 };
@@ -146,7 +146,7 @@ int main() {
         int* p = new int(42);
         delete p;
     
-        SomeClass* obj = new SomeClass();
+        SecondClass* obj = new SecondClass();
         delete obj;
     }
 
