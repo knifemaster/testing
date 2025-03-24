@@ -5,8 +5,8 @@
 class MyClass {
     public:
         int value;
-        
-        MyClass(int v = 0) : value(v) {}
+        bool is_value;
+        MyClass(int v = 0, bool bool_value = true) : value(v), is_value(bool_value) {}
 
         MyClass operator+(const MyClass& other) const {
             return MyClass(value + other.value);
@@ -56,6 +56,10 @@ class MyClass {
 
         bool operator>=(const MyClass& other) const {
             return value >= other.value;
+        }
+        
+        bool operator||(const MyClass& other) const {
+            return is_value || other.is_value;
         }
 
         MyClass& operator++() { // Префиксный инкремент
@@ -167,8 +171,8 @@ int main() {
     }
 
 
-    MyClass a(10);
-    MyClass b(5);
+    MyClass a(10, true);
+    MyClass b(5, false);
 
     MyClass c = a + b;
     std::cout << "a + b = " << c << std::endl;
@@ -186,6 +190,8 @@ int main() {
     std::cout << "a != b: " << (a != b) << std::endl;
     std::cout << "a < b: " << (a < b) << std::endl;
     std::cout << "a > b: " << (a > b) << std::endl;
+
+    std::cout << "a || b: " << (a || b) << std::endl;
 
     ++a;
     std::cout << "После ++a: " << a << std::endl;
