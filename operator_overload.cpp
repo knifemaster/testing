@@ -116,12 +116,18 @@ void* operator new(std::size_t size) {
     return p;
 }
 
-void operator delete(*void p) noexcept {
-    std::cout << "Освобождена паиять\n";
+void operator delete(void* p) noexcept {
+    std::cout << "Освобождена память\n";
     std::free(p);
 }
 
 int main() {
+
+    {
+        int* p = new int(42);
+        delete p;
+    }
+
 
     MyClass a(10);
     MyClass b(5);
