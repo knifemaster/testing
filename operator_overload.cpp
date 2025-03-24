@@ -62,6 +62,10 @@ class MyClass {
             return is_value || other.is_value;
         }
 
+        bool operator&&(const MyClass& other) const {
+            return is_value && other.is_value;
+        }
+
         MyClass& operator++() { // Префиксный инкремент
             ++value;
             return *this;
@@ -192,6 +196,7 @@ int main() {
     std::cout << "a > b: " << (a > b) << std::endl;
 
     std::cout << "a || b: " << (a || b) << std::endl;
+    std::cout << "a && b: " << (a && b) << std::endl;
 
     ++a;
     std::cout << "После ++a: " << a << std::endl;
