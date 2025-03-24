@@ -136,6 +136,19 @@ class SecondClass {
             std::cout << "Освобождена память для SecondClass\n";
             std::free(p);
         }
+
+        void* operator new[](std::size_t size) {
+            std::cout << "Выделено " << size << " байт для массива SecondClass\n";
+            void* p = std::malloc(size);
+            if (!p)
+                throw std::bad_alloc();
+            return p;
+        }
+
+        void operator delete[](void* p) noexcept {
+            std::cout << "Освобождена память для массива SecondClass\n";
+            std::free(p);
+        }
 };
 
 
@@ -148,6 +161,9 @@ int main() {
     
         SecondClass* obj = new SecondClass();
         delete obj;
+
+        SecondClass* arr = new SecondClass[10];
+        delete[] arr;
     }
 
 
