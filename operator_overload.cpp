@@ -58,6 +58,10 @@ class MyClass {
             return value >= other.value;
         }
         
+        bool operator!() const {
+            return !is_value;
+        }
+
         bool operator||(const MyClass& other) const {
             return is_value || other.is_value;
         }
@@ -197,7 +201,7 @@ int main() {
 
     std::cout << "a || b: " << (a || b) << std::endl;
     std::cout << "a && b: " << (a && b) << std::endl;
-
+    std::cout << "!a  !b: " << (!a) << " " << (!b) << std::endl;
     ++a;
     std::cout << "После ++a: " << a << std::endl;
 
