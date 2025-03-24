@@ -116,6 +116,10 @@ void* operator new(std::size_t size) {
     return p;
 }
 
+void operator delete(*void p) noexcept {
+    std::cout << "Освобождена паиять\n";
+    std::free(p);
+}
 
 int main() {
 
