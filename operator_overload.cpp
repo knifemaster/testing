@@ -145,6 +145,9 @@ int main() {
     {
         int* p = new int(42);
         delete p;
+    
+        SomeClass* obj = new MyClass();
+        delete obj;
     }
 
 
