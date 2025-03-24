@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
 
 class MyClass {
     public:
@@ -105,6 +106,15 @@ class MyClass {
         }
 
 };
+
+
+void* operator new(std::size_t size) {
+    std::cout << "Выделено " << size << "Байт\n";
+    void* p = std::malloc(size);
+    if (!p) 
+        throw std::bad_alloc();
+    return p;
+}
 
 
 int main() {
