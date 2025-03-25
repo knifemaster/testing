@@ -17,5 +17,8 @@ class AVLTree {
 
         std::shared_ptr<Node> root;
 
+        int getHeight(std::shared_ptr<Node> node) {
+            return node ? node->height : 0;
+        }
 
 };
