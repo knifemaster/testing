@@ -44,4 +44,17 @@ class AVLTree {
             return x;
         }
 
+        std::shared_ptr<Node> leftRotate(std::shared_ptr<Node> x) {
+            auto y = x->right;
+            auto T2 = y->left;
+
+            y->left = x;
+            x->right = T2;
+
+            updateHeight(x);
+            updateHeight(y);
+
+            return y;
+        }
+
 };
