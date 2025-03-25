@@ -79,4 +79,21 @@ class AVLTree {
             return node;
         }
 
+        
+        std::shared_ptr<Node> insertNode(std::shared_ptr<Node> node, T val) {
+            if (!node) {
+                return std::make_shared<Node>(val);
+            }
+
+            if (val < node->data) {
+                node->left = insertNode(node->left, val);
+            } else if (val > node->data) {
+                node->right = insertNode(node->right, val);
+            } else {
+                return node;  // Дубликаты не допускаются
+            }
+
+            return balance(node);
+        }
+
 };
