@@ -57,4 +57,26 @@ class AVLTree {
             return y;
         }
 
+        std::shared_ptr<Node> balance(std::shared_ptr<Node> node) {
+            if (!node) return nullptr;
+
+            updateHeight(node);
+            int balanceFactor = getBalance(node);
+
+            if (balanceFactor > 1) {
+                if (getBalance(node->left) < 0) {
+                    node->left = leftRotate(node->left); 
+                }
+                return rightRotate(node);
+            }        
+            else if (balanceFactor < -1) {
+                if (getBalance(node->right) > 0) {
+                    node->right = rightRotate(node->right);  // Большое правое вращение
+                }
+                return leftRotate(node);
+            }
+
+            return node;
+        }
+
 };
