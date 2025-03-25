@@ -138,5 +138,14 @@ class RBTree {
         }
 
 
+        void printTree(std::shared_ptr<Node> x) {
+            if (x != nil) {
+                printTree(x->left);
+                std::cout << x->data << " (" << (x->color == Color::RED ? "RED" : "BLACK") << ")\n";
+                printTree(x->right);
+            }
+        }
+
+
 
 };
