@@ -100,4 +100,31 @@ class RBTree {
         }
 
 
+        void insertNode(std::shared_ptr<Node> z) {
+            auto y = nil;
+            auto x = root;
+            while (x != nil) {
+                y = x;
+                if (z->data < x->data) {
+                    x = x->left;
+                } else {
+                    x = x->right;
+                }
+            }
+            z->parent = y;
+            if (y == nil) {
+                root = z;
+            } else if (z->data < y->data) {
+                y->left = z;
+            } else {
+                y->right = z;
+            }
+            z->left = nil;
+            z->right = nil;
+            z->color = Color::RED;
+            fixInsert(z);
+        }
+
+
+
 };
