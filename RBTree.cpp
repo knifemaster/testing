@@ -126,5 +126,17 @@ class RBTree {
         }
 
 
+        std::shared_ptr<Node> searchNode(std::shared_ptr<Node> x, T key) {
+            if (x == nil || key == x->data) {
+                return x;
+            }
+            if (key < x->data) {
+                return searchNode(x->left, key);
+            } else {
+                return searchNode(x->right, key);
+            }
+        }
+
+
 
 };
