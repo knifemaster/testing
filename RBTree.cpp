@@ -166,3 +166,22 @@ class RBTree {
         }
 
 };
+
+
+int main() {
+    RBTree<int> tree;
+
+    tree.insert(10);
+    tree.insert(20);
+    tree.insert(30);
+    tree.insert(15);
+    tree.insert(25);
+
+    std::cout << "Дерево:\n";
+    tree.print();
+
+    std::cout << "\nПоиск 20: " << (tree.search(20) ? "Найдено" : "Не найдено") << "\n";
+    std::cout << "Поиск 50: " << (tree.search(50) ? "Найдено" : "Не найдено") << "\n";
+
+    return 0;
+}
