@@ -96,4 +96,11 @@ class AVLTree {
             return balance(node);
         }
 
+        bool searchNode(std::shared_ptr<Node> node, T val) {
+            if (!node) return false;
+            if (val == node->data) return true;
+            if (val < node->data) return searchNode(node->left, val);
+            return searchNode(node->right, val);
+        }
+
 };
