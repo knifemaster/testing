@@ -103,4 +103,12 @@ class AVLTree {
             return searchNode(node->right, val);
         }
 
+        void printTree(std::shared_ptr<Node> node) {
+            if (node) {
+                printTree(node->left);
+                std::cout << node->data << " (h=" << node->height << ")\n";
+                printTree(node->right);
+            }
+        }
+
 };
