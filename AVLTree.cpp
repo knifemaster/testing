@@ -111,4 +111,20 @@ class AVLTree {
             }
         }
 
+
+    public:
+        AVLTree() : root(nullptr) {}
+
+        void insert(T val) {
+            root = insertNode(root, val);
+        }
+
+        bool search(T val) {
+            return searchNode(root, val);
+        }
+
+        void print() {
+            printTree(root);
+        }
+
 };
