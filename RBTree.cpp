@@ -146,6 +146,23 @@ class RBTree {
             }
         }
 
+    public:
+        RBTree() {
+            nil = std::make_shared<Node>(T(), Color::BLACK);
+            root = nil;
+        }
 
+        void insert(T val) {
+            auto z = std::make_shared<Node>(val);
+            insertNode(z);
+        }
+
+        bool search(T val) {
+            return searchNode(root, val) != nil;
+        }
+
+        void print() {
+            printTree(root);
+        }
 
 };
