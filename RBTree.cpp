@@ -60,4 +60,44 @@ class RBTree {
         }
 
 
+        void fixInsert(std::shared_ptr<Node> z) {
+            while (z->parent->color == Color::RED) {
+                if (z->parent == z->parent->parent->left) {
+                    auto y = z->parent->parent->right;
+                    if (y->color == Color::RED) {
+                        z->parent->color = Color::BLACK;
+                        y->color = Color::BLACK;
+                        z->parent->parent->color = Color::RED;
+                        z = z->parent->parent;
+                    } else {
+                        if (z == z->parent->right) {
+                            z = z->parent;
+                            leftRotate(z);
+                        }
+                        z->parent->color = Color::BLACK;
+                        z->parent->parent->color = Color::RED;
+                        rightRotate(z->parent->parent);
+                    }
+                } else {
+                    auto y = z->parent->parent->left;
+                    if (y->color == Color::RED) {
+                        z->parent->color = Color::BLACK;
+                        y->color = Color::BLACK;
+                        z->parent->parent->color = Color::RED;
+                        z = z->parent->parent;
+                    } else {
+                        if (z == z->parent->left) {
+                            z = z->parent;
+                            rightRotate(z);
+                        }
+                        z->parent->color = Color::BLACK;
+                        z->parent->parent->color = Color::RED;
+                        leftRotate(z->parent->parent);
+                    }
+                }
+            }
+            root->color = Color::BLACK;
+        }
+
+
 };
