@@ -27,4 +27,8 @@ class AVLTree {
             }
         }
 
+        int getBalance(std::shared_ptr<Node> node) {
+            return node ? getHeight(node->left) - getHeight(node->right) : 0;
+        }
+
 };
