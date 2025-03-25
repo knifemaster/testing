@@ -20,4 +20,25 @@ class RBTree {
         
         std::shared_ptr<Node> root;
         std::shared_ptr<Node> nil;
+
+        void leftRotate(std::shared_ptr<Node> x) {
+            auto y = x->right;
+            x->right = y->left;
+            if (y->left != nil) {
+                y->left->parent = x;
+            }
+
+            y->parent = x->parent;
+            if (x->parent == nil) {
+                root = y;
+            } else if (x == x->parent->left) {
+                x->parent->left = y;
+            } else {
+                x->parent->right = y;
+            }
+            y->left = x;
+            x->parent = y;
+        }
+
+
 };
