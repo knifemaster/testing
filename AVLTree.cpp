@@ -128,3 +128,23 @@ class AVLTree {
         }
 
 };
+
+
+int main() {
+    AVLTree<int> tree;
+
+    tree.insert(10);
+    tree.insert(20);
+    tree.insert(30);
+    tree.insert(40);
+    tree.insert(50);
+    tree.insert(25);
+
+    std::cout << "AVL-дерево:\n";
+    tree.print();
+
+    std::cout << "\nПоиск 30: " << (tree.search(30) ? "Найдено" : "Не найдено") << "\n";
+    std::cout << "Поиск 100: " << (tree.search(100) ? "Найдено" : "Не найдено") << "\n";
+
+    return 0;
+}
