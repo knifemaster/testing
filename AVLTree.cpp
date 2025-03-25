@@ -21,4 +21,10 @@ class AVLTree {
             return node ? node->height : 0;
         }
 
+        void updateHeight(std::shared_ptr<Node> node) {
+            if (node) {
+                node->height = 1 + std::max(getHeight(node->left), getHeight(node->right));
+            }
+        }
+
 };
