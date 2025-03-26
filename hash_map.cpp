@@ -29,3 +29,17 @@ private:
             }
         }
     }
+
+public:
+    HashMap() : buckets(DEFAULT_CAPACITY), size(0) {}
+    
+    void put(const K& key, const V& value) {
+        int index = hash(key);
+        
+        // Проверяем, есть ли уже такой ключ
+        for (auto& pair : buckets[index]) {
+            if (pair.first == key) {
+                pair.second = value; // Обновляем значение
+                return;
+            }
+        }
