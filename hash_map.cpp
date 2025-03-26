@@ -64,3 +64,18 @@ public:
 
         return false;
     }
+
+    bool remove(const K& key) {
+        int index = hash(key);
+        
+        auto& bucket = buckets[index];
+        for (auto it = bucket.begin(); it != bucket.end(); ++it) {
+            if (it->first == key) {
+                bucket.erase(it);
+                size--;
+                return true;
+            }
+        }
+        
+        return false;
+    }
