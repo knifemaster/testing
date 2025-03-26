@@ -101,3 +101,6 @@ public:
         return size == 0;
     }
 };
+
+template<typename K, typename V>
+const double HashMap<K, V>::LOAD_FACTOR = 0.75;
