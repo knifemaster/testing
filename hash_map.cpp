@@ -104,3 +104,25 @@ public:
 
 template<typename K, typename V>
 const double HashMap<K, V>::LOAD_FACTOR = 0.75;
+
+
+int main() {
+    HashMap<std::string, int> map;
+
+    map.put("one", 1);
+    map.put("two", 2);
+    map.put("three", 3);
+
+    int value;
+    if (map.get("two", value)) {
+        std::cout << "two: " << value << std::endl;
+    }
+
+    std::cout << "Size: " << map.getSize() << std::endl;
+
+    map.remove("two");
+    std::cout << "Contains 'two': " << map.contains("two") << std::endl;
+    std::cout << "Size after removal: " << map.getSize() << std::endl;
+
+    return 0;
+}
