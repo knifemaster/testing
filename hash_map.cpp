@@ -91,3 +91,13 @@ public:
 
         return false;
     }
+
+    
+    int getSize() const {
+        return size;
+    }
+
+    bool isEmpty() const {
+        return size == 0;
+    }
+};
