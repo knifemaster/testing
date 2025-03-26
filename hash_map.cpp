@@ -16,3 +16,16 @@ private:
         std::hash<K> hasher;
         return hasher(key) % buckets.size();
     }
+
+    void rehash() {
+        std::vector<std::list<std::pair<K, V>>> oldBuckets = buckets;
+        buckets.clear();
+        buckets.resize(oldBuckets.size() * 2);
+        size = 0;
+
+        for (auto& bucket : oldBuckets) {
+            for (auto& pair : bucket) {
+                put(pair.first, pair.second);
+            }
+        }
+    }
