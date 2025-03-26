@@ -79,3 +79,15 @@ public:
         
         return false;
     }
+
+    bool contains(const K& key) const {
+        int index = hash(key);
+
+        for (const auto& pair : buckets[index]) {
+            if (pair.first == key) {
+                return true;
+            }
+        }
+
+        return false;
+    }
