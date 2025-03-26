@@ -17,7 +17,11 @@ int main() {
             while(true) {
                 constexpr size_t GB = 1024u * 1024u * 1024;
             
-                new char[GB];
+                char* buffer = new char[GB];
+                for (size_t i = 0u; i < GB; i += 4096u) {
+                    buffer[i] = 100;
+                }
+
                 std::cout << "allocated " << ++allocations_count << " GB" << "\n";
             }
         
