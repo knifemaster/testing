@@ -36,10 +36,31 @@ public:
     void put(const K& key, const V& value) {
         int index = hash(key);
         
-        // Проверяем, есть ли уже такой ключ
+        
         for (auto& pair : buckets[index]) {
             if (pair.first == key) {
-                pair.second = value; // Обновляем значение
+                pair.second = value; 
                 return;
             }
         }
+
+        buckets[index].emplace_back(key, value);
+        size++;
+
+        if ((double)size / buckets.size() > LOAD_FACTOR) {
+            rehash();
+        }
+    }
+
+    bool get(const K& key, V& value) const {
+        int index = hash(key);
+
+        for (const auto& pair : buckets[index]) {
+            if (pair.first == key) {
+                value = pair.second;
+                return true;
+            }
+        }
+
+        return false;
+    }
