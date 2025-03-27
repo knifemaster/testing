@@ -83,3 +83,14 @@ void demonstrateHashMaps() {
         cout << pair.first.name << ": " << pair.second << endl;
     }
 }
+
+
+int main() {
+    std::cout << "=== Демонстрация хеш-функций ===" << std::endl;
+    demonstrateHashes();
+
+    std::cout << "\n=== Демонстрация HashMap с разными хешерами ===" << std::endl;
+    demonstrateHashMaps();
+
+    return 0;
+}
