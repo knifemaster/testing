@@ -60,3 +60,26 @@ void demonstrateHashes() {
     cout << "Хеш Person (PersonHasher): " << PersonHasher()(p) << endl;
 }
 
+
+void demonstrateHashMaps() {
+    Person p1{"Alice", 30};
+    Person p2{"Bob", 25};
+
+    cout << "\n1. HashMap со стандартным std::hash<Person>:" << endl;
+    std::unordered_map<Person, std::string> stdMap;
+    stdMap[p1] = "Developer";
+    stdMap[p2] = "Designer";
+
+    for (const auto& pair : stdMap) {
+        cout << pair.first.name << ": " << pair.second << endl;
+    }
+
+    cout << "\n2. HashMap с кастомным PersonHasher:" << endl;
+    std::unordered_map<Person, std::string, PersonHasher> customMap;
+    customMap[p1] = "Engineer";
+    customMap[p2] = "Architect";
+
+    for (const auto& pair : customMap) {
+        cout << pair.first.name << ": " << pair.second << endl;
+    }
+}
