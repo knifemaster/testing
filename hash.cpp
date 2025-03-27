@@ -3,6 +3,7 @@
 #include <string>
 #include <unordered_map>
 
+using namespace std;
 
 struct Person {
     std::string name;
