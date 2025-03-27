@@ -36,3 +36,12 @@ struct PersonHasher {
         return hash<string>()(p.name) * 31 + hash<int>()(p.age);
     }
 };
+
+
+size_t customStringHash(const std::string& s) {
+    size_t hash = 8381;
+    for (char c : s) {
+        hash = ((hash << 5) + hash) + c;
+    }
+    return hash;
+}
