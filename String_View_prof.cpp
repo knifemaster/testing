@@ -140,3 +140,12 @@ private:
     const char* data_;
     size_type size_;
 };
+
+namespace std {
+    template<> struct hash<StringView> {
+        size_t operator()(const StringView& sv) const noexcept {
+            // Реализация hash как в std::string_view
+            return std::hash<std::string_view>()(std::string_view(sv.data(), sv.size()));
+        }
+    };
+}
