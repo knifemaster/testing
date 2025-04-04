@@ -24,4 +24,12 @@ class StringView {
             return data_[pos];        
         }
 
+        StringView substr(size_t pos, size_t count = npos) const {
+            if (pos > size_) {
+                throw std::out_of_range("StringView::substr");
+            }
+            size_t rlen = std::min(count, size_ - pos);
+            return StringView(data_ + pos, rlen);
+        }
+
 }
