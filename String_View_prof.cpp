@@ -75,3 +75,68 @@ public:
         std::swap(data_, other.data_);
         std::swap(size_, other.size_);
     }
+
+        constexpr StringView substr(size_type pos, size_type count = npos) const {
+        if (pos > size_) {
+            throw std::out_of_range("StringView::substr");
+        }
+        const size_type rlen = std::min(count, size_ - pos);
+        return StringView(data_ + pos, rlen);
+    }
+
+    // Поиск
+    constexpr size_type find(StringView v, size_type pos = 0) const noexcept {
+        if (pos > size_ || v.size() > size_ - pos) {
+            return npos;
+        }
+        if (v.empty()) {
+            return pos;
+        }
+        const_iterator it = std::search(begin() + pos, end(), v.begin(), v.end());
+        return it == end() ? npos : static_cast<size_type>(it - begin());
+    }
+
+    constexpr size_type find(char c, size_type pos = 0) const noexcept {
+        return find(StringView(&c, 1), pos);
+    }
+
+    // Сравнение
+    constexpr int compare(StringView rhs) const noexcept {
+        const int cmp = std::memcmp(data_, rhs.data_, std::min(size_, rhs.size_));
+        return cmp != 0 ? cmp : (size_ == rhs.size_ ? 0 : size_ < rhs.size_ ? -1 : 1);
+    }
+
+    // Операторы сравнения
+    friend constexpr bool operator==(StringView lhs, StringView rhs) noexcept {
+        return lhs.size() == rhs.size() && lhs.compare(rhs) == 0;
+    }
+    friend constexpr bool operator!=(StringView lhs, StringView rhs) noexcept {
+        return !(lhs == rhs);
+    }
+    friend constexpr bool operator<(StringView lhs, StringView rhs) noexcept {
+        return lhs.compare(rhs) < 0;
+    }
+    friend constexpr bool operator<=(StringView lhs, StringView rhs) noexcept {
+        return lhs.compare(rhs) <= 0;
+    }
+    friend constexpr bool operator>(StringView lhs, StringView rhs) noexcept {
+        return lhs.compare(rhs) > 0;
+    }
+    friend constexpr bool operator>=(StringView lhs, StringView rhs) noexcept {
+        return lhs.compare(rhs) >= 0;
+    }
+
+    // Преобразование в std::string
+    explicit operator std::string() const {
+        return std::string(data_, size_);
+    }
+
+    // Оператор вывода
+    friend std::ostream& operator<<(std::ostream& os, StringView v) {
+        return os.write(v.data_, v.size_);
+    }
+
+private:
+    const char* data_;
+    size_type size_;
+};
