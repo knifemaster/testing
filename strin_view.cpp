@@ -1,6 +1,9 @@
 #include <cstring>
 #include <stdexcept>
-#include <ostream>
+#include <iostream>
+#include <string>
+
+
 
 class StringView {
 
@@ -32,4 +35,22 @@ class StringView {
             return StringView(data_ + pos, rlen);
         }
 
+        bool operator==(StringView other) const {
+            return size_ == other.size_ && std::memcmp(data_, other.data_, size_) == 0;
+        }
+
+        bool operator!=(StringView other) const { return !(*this == other); }
+
+        static const size_t npos = static_cast<size_t>(-1);
+
+    private:
+        const char* data_;
+        size_t size_;
+
+};
+
+std::ostream& operator<<(std::ostream& os, StringView sv) {
+    return os.write(sv.data(), sv.size());
 }
+
+
