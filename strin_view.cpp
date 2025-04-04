@@ -54,3 +54,29 @@ std::ostream& operator<<(std::ostream& os, StringView sv) {
 }
 
 
+int main() {
+    // Создание StringView разными способами
+    StringView sv1("Hello, world!");
+    std::string str = "Modern C++";
+    StringView sv2(str);
+    StringView sv3("Array literal", 5); // "Array"
+
+    // Основные операции
+    std::cout << "sv1: " << sv1 << ", size: " << sv1.size() << "\n";
+    std::cout << "sv2: " << sv2 << ", empty: " << std::boolalpha << sv2.empty() << "\n";
+    std::cout << "sv3: " << sv3 << "\n";
+
+    // Доступ к элементам
+    std::cout << "First char of sv1: " << sv1[0] << "\n";
+    std::cout << "Last char of sv2: " << sv2.at(sv2.size() - 1) << "\n";
+
+    // Подстроки
+    StringView sub = sv1.substr(7, 5); // "world"
+    std::cout << "Substring: " << sub << "\n";
+
+    // Сравнение
+    std::cout << "sv1 == sv2: " << (sv1 == sv2) << "\n";
+    std::cout << "sv3 == 'Array': " << (sv3 == StringView("Array")) << "\n";
+
+    return 0;
+}
