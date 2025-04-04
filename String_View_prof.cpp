@@ -35,3 +35,13 @@ public:
     // Запрещаем копирование с неконстантным источником
     StringView(char* str) = delete;
     StringView(char* str, size_type len) = delete;
+
+
+    constexpr const_iterator begin() const noexcept { return data_; }
+    constexpr const_iterator end() const noexcept { return data_ + size_; }
+    constexpr const_iterator cbegin() const noexcept { return begin(); }
+    constexpr const_iterator cend() const noexcept { return end(); }
+    const_reverse_iterator rbegin() const noexcept { return const_reverse_iterator(end()); }
+    const_reverse_iterator rend() const noexcept { return const_reverse_iterator(begin()); }
+    const_reverse_iterator crbegin() const noexcept { return rbegin(); }
+    const_reverse_iterator crend() const noexcept { return rend(); }
