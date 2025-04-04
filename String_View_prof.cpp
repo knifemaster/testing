@@ -22,3 +22,16 @@ public:
     using reverse_iterator = const_reverse_iterator;
     using size_type = size_t;
     using difference_type = ptrdiff_t;
+
+
+    static constexpr size_type npos = static_cast<size_type>(-1);
+
+    // Конструкторы
+    constexpr StringView() noexcept : data_(nullptr), size_(0) {}
+    constexpr StringView(const char* str) : data_(str), size_(str ? strlen(str) : 0) {}
+    constexpr StringView(const char* str, size_type len) : data_(str), size_(len) {}
+    StringView(const std::string& str) noexcept : data_(str.data()), size_(str.size()) {}
+
+    // Запрещаем копирование с неконстантным источником
+    StringView(char* str) = delete;
+    StringView(char* str, size_type len) = delete;
