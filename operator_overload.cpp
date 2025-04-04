@@ -168,8 +168,63 @@ class SecondClass {
 };
 
 
+class MyString {
+public:
+    // Конструктор по умолчанию
+    MyString() : data(nullptr), size(0) {}
+
+    // Конструктор с параметром
+    MyString(const char* str) {
+        size = strlen(str);
+        data = new char[size + 1];
+        strcpy(data, str);
+    }
+
+    // Деструктор
+    ~MyString() {
+        delete[] data;
+    }
+
+    // Move assignment operator (оператор перемещающего присваивания)
+    MyString& operator=(MyString&& other) noexcept {
+        if (this != &other) { // Проверка на самоприсваивание
+            delete[] data;     // Освобождаем текущие ресурсы
+
+            // "Перемещаем" ресурсы из other в текущий объект
+            data = other.data;
+            size = other.size;
+
+            // Обнуляем other, чтобы деструктор не освободил данные
+            other.data = nullptr;
+            other.size = 0;
+        }
+        return *this;
+    }
+
+    // Для демонстрации
+    void print() const {
+        if (data) {
+            std::cout << data << "\n";
+        } else {
+            std::cout << "(null)\n";
+        }
+    }
+
+private:
+    char* data;
+    size_t size;
+};
+
 
 int main() {
+
+    MyString str1("Hello");
+    MyString str2;
+
+    str2 = std::move(str1); // Вызов move assignment operator
+
+    str1.print(); // Выведет: (null)
+    str2.print(); // Выведет: Hell
 
     {
         int* p = new int(42);
