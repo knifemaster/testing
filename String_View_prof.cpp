@@ -4,9 +4,7 @@
 #include <iterator>
 #include <algorithm>
 #include <string>
-#include <string_view> 
-
-
+#include <string_view>
 
 class StringView {
 public:
@@ -23,7 +21,7 @@ public:
     using size_type = size_t;
     using difference_type = ptrdiff_t;
 
-
+    // Константы
     static constexpr size_type npos = static_cast<size_type>(-1);
 
     // Конструкторы
@@ -36,7 +34,7 @@ public:
     StringView(char* str) = delete;
     StringView(char* str, size_type len) = delete;
 
-
+    // Итераторы
     constexpr const_iterator begin() const noexcept { return data_; }
     constexpr const_iterator end() const noexcept { return data_ + size_; }
     constexpr const_iterator cbegin() const noexcept { return begin(); }
@@ -46,7 +44,7 @@ public:
     const_reverse_iterator crbegin() const noexcept { return rbegin(); }
     const_reverse_iterator crend() const noexcept { return rend(); }
 
-
+    // Доступ к элементам
     constexpr const_reference operator[](size_type pos) const { return data_[pos]; }
     const_reference at(size_type pos) const {
         if (pos >= size_) {
@@ -76,7 +74,8 @@ public:
         std::swap(size_, other.size_);
     }
 
-        constexpr StringView substr(size_type pos, size_type count = npos) const {
+    // Операции с подстроками
+    constexpr StringView substr(size_type pos, size_type count = npos) const {
         if (pos > size_) {
             throw std::out_of_range("StringView::substr");
         }
@@ -97,7 +96,11 @@ public:
     }
 
     constexpr size_type find(char c, size_type pos = 0) const noexcept {
-        return find(StringView(&c, 1), pos);
+        if (pos >= size_) {
+            return npos;
+        }
+        const const_iterator it = std::find(begin() + pos, end(), c);
+        return it == end() ? npos : static_cast<size_type>(it - begin());
     }
 
     // Сравнение
@@ -144,7 +147,6 @@ private:
 namespace std {
     template<> struct hash<StringView> {
         size_t operator()(const StringView& sv) const noexcept {
-            // Реализация hash как в std::string_view
             return std::hash<std::string_view>()(std::string_view(sv.data(), sv.size()));
         }
     };
@@ -157,28 +159,28 @@ namespace std {
 int main() {
     const char* cstr = "Hello, world!";
     std::string str = "Modern C++";
-
+    
     StringView sv1(cstr);
     StringView sv2(str);
     StringView sv3(cstr, 5); // "Hello"
-
+    
     std::cout << "sv1: " << sv1 << "\n";
     std::cout << "sv2: " << sv2 << "\n";
     std::cout << "sv3: " << sv3 << "\n";
-
+    
     // Использование итераторов
     std::vector<char> chars(sv1.begin(), sv1.end());
-
+    
     // Поиск
     size_t pos = sv1.find("world");
     if (pos != StringView::npos) {
         StringView sub = sv1.substr(pos);
         std::cout << "Found: " << sub << "\n";
     }
-
+    
     // Удаление префикса
     sv3.remove_prefix(1);
     std::cout << "After remove_prefix: " << sv3 << "\n"; // "ello"
-
+    
     return 0;
 }
