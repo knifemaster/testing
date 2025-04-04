@@ -149,3 +149,36 @@ namespace std {
         }
     };
 }
+
+
+#include <iostream>
+#include <vector>
+
+int main() {
+    const char* cstr = "Hello, world!";
+    std::string str = "Modern C++";
+
+    StringView sv1(cstr);
+    StringView sv2(str);
+    StringView sv3(cstr, 5); // "Hello"
+
+    std::cout << "sv1: " << sv1 << "\n";
+    std::cout << "sv2: " << sv2 << "\n";
+    std::cout << "sv3: " << sv3 << "\n";
+
+    // Использование итераторов
+    std::vector<char> chars(sv1.begin(), sv1.end());
+
+    // Поиск
+    size_t pos = sv1.find("world");
+    if (pos != StringView::npos) {
+        StringView sub = sv1.substr(pos);
+        std::cout << "Found: " << sub << "\n";
+    }
+
+    // Удаление префикса
+    sv3.remove_prefix(1);
+    std::cout << "After remove_prefix: " << sv3 << "\n"; // "ello"
+
+    return 0;
+}
