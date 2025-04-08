@@ -1,3 +1,6 @@
+// compile with
+//g++ -ggdb -std=c++23 stack_trace.cpp -lstdc++_libbacktrace
+
 #include <stacktrace>
 #include <string>
 #include <iostream>
