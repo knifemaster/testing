@@ -17,10 +17,16 @@ std::generator<int> power(int val) {
     }
 }
 
+
 int main() {
 
-    for (int i : iota() | std::views::take(10)) {
-        std::print("{ } ", i);
+    for (int i : iota() | std::views::take(7)) {
+        std::print("{} ", i);
+    }
+    std::println();
+    for (const auto v : power(2) | std::views::take(10)) {
+        std::print("{} ", v);
     }
 
 }
+
