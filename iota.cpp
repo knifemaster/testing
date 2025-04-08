@@ -10,6 +10,13 @@ std::generator<int> iota() {
 
 }
 
+std::generator<int> power(int val) {
+    int x = 1;
+    while(true) {
+        co_yield x*=val;
+    }
+}
+
 int main() {
 
     for (int i : iota() | std::views::take(10)) {
