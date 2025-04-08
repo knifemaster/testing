@@ -20,7 +20,7 @@ std::generator<int> power(int val) {
 
 int main() {
 
-    for (int i : iota() | std::views::take(7)) {
+    for (int i : iota() | std::views::take(10)) {
         std::print("{} ", i);
     }
     std::println();
