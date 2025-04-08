@@ -5,7 +5,7 @@
 #include <string_view>
 
 
-enum class parseJ_error {
+enum class parse_error {
     invalid_input,
     overflow
 };
