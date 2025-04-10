@@ -46,10 +46,36 @@ void boost_allocation() {
 
 }
 
+template <class T>
+class allocator {
+    public:
+
+        using value_type = T;
+
+        T* allocate(size_t n) {
+            std::cout << "Items : " << n << " allocate: " << n * sizeof(T) << "bytes " << std::endl;
+            return static_cast<T*>(::operator new(n * sizeof(T)));
+        }
+        void deallocate(T* ptr, size_t n) {
+            std::cout << "Deallocate: " << n * sizeof(T) << "bytes "<< std::endl;
+            ::operator delete(ptr);
+        }
+};
 
 int main() {
 
-    boost_allocation();
+    std::vector<int, allocator<int>> vec;
+    vec.reserve(100);
+    vec.emplace_back(1);
+    vec.emplace_back(2);
+    vec.emplace_back(3);
+    vec.emplace_back(199);
+
+    for (const auto& val : vec) {
+        std::cout << val << std::endl;
+    }
+
+    //boost_allocation();
 
     return 0;
 }
