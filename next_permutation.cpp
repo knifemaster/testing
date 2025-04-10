@@ -4,7 +4,7 @@
 #include <functional>
 #include <iostream>
 #include <string>
-
+#include <ranges>
 
 struct S {
 	char c;
