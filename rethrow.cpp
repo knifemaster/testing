@@ -18,6 +18,14 @@ void handleAndRethrow() {
     }
 }
 
+void worker(std::exception_ptr& ex_ptr) {
+    try {
+        throw std::runtime_error("Ошибка в потоке!");
+    } catch (...) {
+        ex_ptr = std::current_exception();
+    }
+}
+
 
 int main() {
 
@@ -25,6 +33,18 @@ int main() {
         handleAndRethrow();
     } catch (const std::exception& e) {
         std::cerr << "Поймано исключение: " << e.what() << "\n";
+    }
+
+    std::exception_ptr ex_ptr;
+    std::thread t(worker, std::ref(ex_ptr));
+    t.join();
+
+    if (ex_ptr) {
+        try {
+            std::rethrow_exception(ex_ptr);
+        } catch (const std::exception& e) {
+            std::cerr << "Ошибка из потока: "<< e.what() << "\n";
+        }
     }
 
     return 0;
