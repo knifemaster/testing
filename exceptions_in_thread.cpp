@@ -1,7 +1,6 @@
 #include <thread>
 #include <iostream>
 #include <exception>
-
 #include <future>
 
 //Самый простой способ — обернуть код потока в try-catch
@@ -76,8 +75,34 @@ void risky_task() {
 
 
 
+//4. Использование std::promise для передачи исключений
+//Если поток должен уведомить главный поток об ошибке:
+void worker(std::promise<void> promise) {
+    try {
+        throw std::runtime_error("Error in worker thread!");
+        promise.set_value();
+    }
+    catch (...) {
+        promise.set_exception(std::current_exception());
+    }
+}
+
 
 int main() {
+
+    std::promise<void> promise;
+    auto future4 = promise.get_future();
+
+    std::thread t1(worker, std::move(promise));
+
+    try {
+        future4.get();
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Caught: " << e.what() << "\n";
+    }
+    t1.join();
+
 
     std::thread t(thread_function);
     t.join();
