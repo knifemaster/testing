@@ -86,15 +86,21 @@ void worker(std::promise<void> promise) {
         promise.set_exception(std::current_exception());
     }
 }
+//Плюсы:
+//✅ Полный контроль над передачей исключений.
+//✅ Подходит для сложных сценариев.
+//Минусы:
+//❌ Больше boilerplate-кода.
+
+
+
 
 
 int main() {
-
+    // last 4 variant with worker
     std::promise<void> promise;
     auto future4 = promise.get_future();
-
     std::thread t1(worker, std::move(promise));
-
     try {
         future4.get();
     }
@@ -104,11 +110,13 @@ int main() {
     t1.join();
 
 
+
     std::thread t(thread_function);
     t.join();
-    
-    auto future = std::async(std::launch::async, risky_operation);
 
+
+
+    auto future = std::async(std::launch::async, risky_operation);
     try {
         int result = future.get(); // Бросит исключение, если оно было в потоке
     }
@@ -116,6 +124,7 @@ int main() {
         std::cerr << "Caught exception from thread: " << e.what() << "\n";
     }
     
+
 
     try {
         ThreadGuard guard(risky_task);
