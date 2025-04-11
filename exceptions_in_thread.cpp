@@ -30,6 +30,53 @@ int risky_operation() {
 //Минусы:
 //❌ Только для std::async (не подходит для std::thread).
 
+
+
+//3. Обёртка для std::thread с перехватом исключений
+//Можно создать класс-обёртку, которая автоматически перехватывает исключения:
+class ThreadGuard {
+    public:
+        template<typename Function, typename... Args>
+        ThreadGuard(Function&& f, Args&&... args) {
+            thread_ = std::thread([this, f = std::forward<Function>(f), args...]() {
+                    try {
+                        f(args...);
+                    }
+                    catch (const std::exception& e) {
+                        exception_ = std::current_exception();
+                    }
+                    catch (...) {
+                        exception_ = std::current_exception();
+                    }
+                    });
+        }
+
+        ~ThreadGuard() {
+            if (thread_.joinable()) {
+                thread_.join();
+            }
+            if (exception_) {
+                std::rethrow_exception(exception_);
+            }
+        }
+    private:
+        std::thread thread_;
+        std::exception_ptr exception_;
+};
+
+void risky_task() {
+    throw std::runtime_error("Thread crashed!");
+}
+
+//Плюсы:
+//✅ Автоматический перехват исключений.
+//✅ Можно пробросить исключение в главный поток.
+//Минусы:
+//❌ Нужно создавать обёртку.
+
+
+
+
 int main() {
 
     std::thread t(thread_function);
@@ -44,6 +91,14 @@ int main() {
         std::cerr << "Caught exception from thread: " << e.what() << "\n";
     }
     
+
+    try {
+        ThreadGuard guard(risky_task);
+    }
+    catch (const std::exception& e) {
+        std::cerr << "Main thread caught :" << e.what() << "\n";
+    }
+
     
     return 0;
 
