@@ -36,3 +36,14 @@ class Derived : public Base {
         }
 
 };
+
+
+int main() {
+    Derived b = Derived();
+    Base* c = &b;
+    c->print();
+    Base bs = Derived();
+    bs.print();
+    return 0;
+}
+
