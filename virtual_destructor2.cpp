@@ -19,3 +19,20 @@ class Base {
         }
 
 };
+
+
+class Derived : public Base {
+    public:
+        Derived() {
+            std::cout << "Derived ctor\n";
+        }
+
+        void print() override {
+            std::cout << "Derived print\n";
+        }
+
+        ~Derived() {
+            std::cout << "Derived dtor\n";
+        }
+
+};
