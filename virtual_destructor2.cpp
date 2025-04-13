@@ -41,9 +41,11 @@ class Derived : public Base {
 int main() {
     Derived b = Derived();
     Base* c = &b;
-    c->print();
+    c->print(); // Derived print
     Base bs = Derived();
-    bs.print();
+    bs.print(); // Base print
+    
+    //delete c; if we delete c invalid pointer exception
     return 0;
 }
 
