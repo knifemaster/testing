@@ -71,8 +71,39 @@ class Cat : public Animal {
 
 };
 
+class Flyable {
+    public:
+        virtual void fly() = 0;
+};
+
+class Eatable {
+    public:
+        virtual void eat() = 0;
+};
+
+class Walkable {
+    public:
+        virtual void walk() = 0;
+};
+
+class Penguin: Eatable, Walkable {
+    public:
+        void eat() override {
+            std::cout << "eating penguin" << "\n";
+        }
+
+        void walk() override {
+            std::cout << "waling penguin" << "\n";
+        }
+
+
+};
 
 int main() {
+
+    Penguin* penguin = new Penguin();
+
+    penguin->walk();
 
     std::vector<Animal*> animals;
 
