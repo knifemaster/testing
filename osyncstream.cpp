@@ -6,7 +6,7 @@
 void worker(int id) {
     std::osyncstream out(std::cout);
     for (int i = 0; i < 3; ++i) {
-        out << "Поток " << id << ", итерация " << i << '\n';
+        out << "Поток " << std::this_thread::get_id() << id << ", итерация " << i << '\n';
     }
     // Буфер автоматически сбрасывается при разрушении out
 }
