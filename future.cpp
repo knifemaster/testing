@@ -3,9 +3,40 @@
 #include <thread>
 #include <chrono>
 #include <stdexcept>
+#include <numeric>
+
+
+int worker(int id, int value) {
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    //std::cout << "id" << id << std::endl;
+    std::cout <<"id "<< id << "thr_id :" << std::this_thread::get_id()<<std::endl;;
+    return id * value;
+}
+
+int main() {
+    std::vector<std::future<int>> futures;
+
+    // Запускаем 5 потоков
+    for (int i = 0; i < 5; ++i) {
+        futures.push_back(std::async(std::launch::async, worker, i, 5));
+    }
+
+    // Собираем результаты
+    int total = 0;
+    for (auto& fut : futures) {
+        total += fut.get(); // Блокируется, пока результат не будет готов
+    }
+
+    std::cout << "Общий результат: " << total << std::endl;
+    return 0;
+}
 
 
 
+
+
+/*
+// transfer exception from thread to other thread
 void worker(std::promise<int> prom) {
     try {
         throw std::runtime_error("Ошибка в рабочем потоке");
@@ -30,7 +61,7 @@ int main() {
     t.join();
     return 0;
 }
-
+*/
 
 /*
 void worker(std::promise<void> prom) {
