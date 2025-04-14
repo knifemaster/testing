@@ -4,8 +4,35 @@
 #include <chrono>
 #include <stdexcept>
 #include <numeric>
+#include <vector>
 
 
+void worker(std::promise<int>&& prom, int id) {
+    prom.set_value(id * 10);
+}
+
+int main() {
+    std::promise<int> prom;
+    std::shared_future<int> shared_fut = prom.get_future().share();
+    
+    std::thread worker_thread(worker, std::move(prom), 5);
+    
+    // Несколько потребителей могут читать результат
+    std::future<int> fut1 = std::async([&] { return shared_fut.get() + 1; });
+    std::future<int> fut2 = std::async([&] { return shared_fut.get() + 2; });
+    
+    std::cout << "Результат 1: " << fut1.get() << std::endl;
+    std::cout << "Результат 2: " << fut2.get() << std::endl;
+    
+    worker_thread.join();
+    return 0;
+}
+
+
+
+
+
+/*
 int worker(int id, int value) {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
     //std::cout << "id" << id << std::endl;
@@ -31,7 +58,7 @@ int main() {
     return 0;
 }
 
-
+*/
 
 
 
