@@ -10,10 +10,15 @@ void exec(int&& value) {
 	std::cout << value << std::endl;
 }
 
+
+
 template <typename T>
 void extract(T&& arg) {
-	exec(std::forward<T>(arg));	
+    exec(std::forward<T>(arg));	
+    
 }
+
+
 
 int main() {
 
