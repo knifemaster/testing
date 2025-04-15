@@ -51,5 +51,18 @@ int main() {
     std::cout << "Substring: " << sub << '\n';  // "great, C"
 
 
+    std::string_view sv3 = "Hello, World!";
+
+    // Проверка начала и конца
+    std::cout << std::boolalpha;
+    std::cout << sv3.starts_with("Hello") << '\n';  // true
+    std::cout << sv3.ends_with("Planet") << '\n';    // false
+
+    // Сравнение
+    std::string_view sv4 = "Hello, C++";
+    std::cout << (sv3 == sv4) << '\n';  // false
+    std::cout << sv3.compare(sv4) << '\n';  // >0 (лексикографическое сравнение)
+
+
     return 0;
 }
