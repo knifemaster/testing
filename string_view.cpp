@@ -30,6 +30,26 @@ int main() {
     sv.remove_suffix(4);  // Удаляем последние 4 символа
     std::cout << sv << '\n';  // "gram"
 
+    
+    std::string_view sv2 = "C++ is great, C++ is powerful!";
+
+    // Поиск подстроки
+    size_t pos = sv2.find("C++");
+    std::cout << "First 'C++' at: " << pos << '\n';  // 0
+
+    pos = sv2.find("Python");
+    if (pos == std::string_view::npos) {
+        std::cout << "Substring not found!\n";
+    }
+
+    // Поиск с конца (rfind)
+    pos = sv2.rfind("C++");
+    std::cout << "Last 'C++' at: " << pos << '\n';  // 14
+
+    // Получение подстроки
+    std::string_view sub = sv2.substr(7, 8);
+    std::cout << "Substring: " << sub << '\n';  // "great, C"
+
 
     return 0;
 }
