@@ -22,6 +22,14 @@ int main() {
     std::cout << str2 << std::endl;
     std::cout << str3 << std::endl;
 
+    std::string_view sv = "Programming";
+
+    sv.remove_prefix(3);  // Удаляем первые 3 символа
+    std::cout << sv << '\n';  // "gramming"
+
+    sv.remove_suffix(4);  // Удаляем последние 4 символа
+    std::cout << sv << '\n';  // "gram"
+
 
     return 0;
 }
