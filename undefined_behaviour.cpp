@@ -51,6 +51,10 @@ int main() {
     delete ptr;  // UB: повторное удаление
 
 
+    //10. Использование memcpy с перекрывающимися областями
+    char str[] = "hello";
+    memcpy(str + 1, str, 5);  // UB: перекрывающиеся области
+
 
     return 0;
 }
