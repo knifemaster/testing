@@ -63,6 +63,12 @@ int main() {
     int y = a.x;  // UB (без std::launder в некоторых случаях)
 
 
+    //12. Нарушение strict aliasing (доступ через несовместимый тип)
+    int x = 42;
+    float* f = reinterpret_cast<float*>(&x);
+    float y = *f;  // UB (если float и int не имеют одинакового представления)
+
+
 
 
     return 0;
