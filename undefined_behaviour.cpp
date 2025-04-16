@@ -56,5 +56,14 @@ int main() {
     memcpy(str + 1, str, 5);  // UB: перекрывающиеся области
 
 
+    //11. Несоблюдение правил вызова std::launder (в C++17 и новее)
+    struct A { int x; };
+    A a{10};
+    new (&a) A{20};
+    int y = a.x;  // UB (без std::launder в некоторых случаях)
+
+
+
+
     return 0;
 }
