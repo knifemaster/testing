@@ -13,5 +13,11 @@ int main() {
     int* ptr = nullptr;
     int x2 = *ptr;  // UB: разыменование nullptr
 
+
+    //3. Использование неинициализированной переменной
+    int x;
+    int y = x + 5;  // UB: x не инициализирована
+
+
     return 0;
 }
