@@ -68,6 +68,11 @@ int main() {
     float* f = reinterpret_cast<float*>(&x);
     float y = *f;  // UB (если float и int не имеют одинакового представления)
 
+    
+    //13. Использование reinterpret_cast для преобразования указателей без соблюдения правил
+    double d = 3.14;
+    int* ptr = reinterpret_cast<int*>(&d);
+    int x = *ptr;  // UB (если не соблюдается выравнивание и типы)
 
 
 
