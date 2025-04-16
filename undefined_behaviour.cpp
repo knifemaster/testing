@@ -45,5 +45,12 @@ int main() {
     int x = *ptr;  // UB: доступ к удалённой памяти
 
 
+    //9. Множественное освобождение памяти (double free)
+    int* ptr = new int(10);
+    delete ptr;
+    delete ptr;  // UB: повторное удаление
+
+
+
     return 0;
 }
