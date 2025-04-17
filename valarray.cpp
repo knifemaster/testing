@@ -112,3 +112,31 @@ int main() {
 
     return 0;
 }
+
+
+
+#include <iostream>
+#include <valarray>
+
+int main() {
+    // Использование valarray для представления матрицы 3x3
+    std::valarray<double> matrix(9); // 3x3 матрица
+
+    // Заполнение матрицы
+    for (int i = 0; i < 9; ++i) {
+        matrix[i] = i + 1;
+    }
+
+    // Умножение каждого элемента на 2
+    matrix *= 2;
+
+    // Вывод матрицы
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            std::cout << matrix[i * 3 + j] << " ";
+        }
+        std::cout << "\n";
+    }
+
+    return 0;
+}
