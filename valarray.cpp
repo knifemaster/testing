@@ -65,3 +65,26 @@ int main() {
 
     return 0;
 }
+
+
+#include <iostream>
+#include <valarray>
+#include <cmath>
+
+int main() {
+    std::valarray<double> vals = {1.0, 2.0, 3.0, 4.0, 5.0};
+
+    // Применение функции sqrt к каждому элементу
+    std::valarray<double> sqrt_vals = std::sqrt(vals);
+
+    // Логарифмирование
+    std::valarray<double> log_vals = std::log(vals);
+
+    std::cout << "Square roots: ";
+    for (double x : sqrt_vals) std::cout << x << " ";
+
+    std::cout << "\nLogarithms: ";
+    for (double x : log_vals) std::cout << x << " ";
+
+    return 0;
+}
