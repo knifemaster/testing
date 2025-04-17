@@ -140,3 +140,23 @@ int main() {
 
     return 0;
 }
+
+
+#include <iostream>
+#include <valarray>
+
+int main() {
+    std::valarray<int> nums = {1, -2, 3, -4, 5};
+
+    // Замена всех отрицательных чисел на 0
+    nums = nums.apply([](int x) { return x > 0 ? x : 0; });
+
+    // Сумма всех элементов
+    int total = nums.sum();
+
+    std::cout << "Filtered array: ";
+    for (int x : nums) std::cout << x << " ";
+    std::cout << "\nSum: " << total << "\n";
+
+    return 0;
+}
