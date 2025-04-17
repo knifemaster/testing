@@ -37,3 +37,31 @@ int main() {
     std::cout << "\nSquare roots: ";
     for (auto n : sqrt_v) std::cout << n << ' ';
 }
+
+
+#include <iostream>
+#include <valarray>
+
+int main() {
+    std::valarray<int> va1 = {1, 2, 3, 4, 5};
+    std::valarray<int> va2 = {10, 20, 30, 40, 50};
+
+    // Сложение двух valarray
+    std::valarray<int> sum = va1 + va2;
+
+    // Умножение на скаляр
+    std::valarray<int> scaled = 2 * va1;
+
+    // Математические операции (например, возведение в квадрат)
+    std::valarray<int> squared = va1 * va1;
+
+    // Вывод результатов
+    std::cout << "Sum: ";
+    for (int x : sum) std::cout << x << " ";
+    std::cout << "\nScaled: ";
+    for (int x : scaled) std::cout << x << " ";
+    std::cout << "\nSquared: ";
+    for (int x : squared) std::cout << x << " ";
+
+    return 0;
+}
