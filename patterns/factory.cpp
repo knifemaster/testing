@@ -17,3 +17,13 @@ class ConcreteProductA : public Product {
             std::cout << "Используется продукт А" << "\n";
         }
 };
+
+class ConcreteProductB : public Product {
+    public:
+        void Use() override {
+            std::cout << "Используется продукт B" << "\n";
+        }
+};
+
+
+
