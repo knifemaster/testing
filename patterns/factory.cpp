@@ -26,4 +26,24 @@ class ConcreteProductB : public Product {
 };
 
 
+class Factory {
+    public:
+        enum ProductType {
+            PRODUCT_A,
+            PRODUCT_B
+        };
+
+        static std::unique_ptr<Product> CreateProduct(ProductType type) {
+            switch (type) {
+                case PRODUCT_A:
+                    return std::make_unique<ConcreteProductA>();
+                case PRODUCT_B:
+                    return std::make_unique<ConcreteProductB>();
+                default:
+                    throw std::invalid_argument("Неизвестный тип продукта");
+            }
+        
+        }
+
+};
 
