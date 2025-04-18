@@ -47,3 +47,14 @@ class Factory {
 
 };
 
+
+int main() {
+    
+    auto productA = Factory::CreateProduct(Factory::PRODUCT_A);
+    productA -> Use();
+
+    auto productB = Factory::CreateProduct(Factory::PRODUCT_B);
+    productB -> Use();
+
+    return 0;
+}
