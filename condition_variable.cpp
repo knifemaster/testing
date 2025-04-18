@@ -31,7 +31,7 @@ int main() {
     std::vector<std::thread> threads;
 
     // Запускаем 3 потока
-    for (int i = 1; i <= 3; ++i) {
+    for (int i = 1; i <= 4; ++i) {
         threads.emplace_back(threadFunction, i);
     }
 
