@@ -54,6 +54,13 @@ public:
     virtual std::string Operation() const = 0;
 };
 
+class Samsung : public Phone {
+public:
+    std::string Operation() const override {
+        return "Создаем модель Samsung";
+    }
+};
+
 
 
 int main() {
