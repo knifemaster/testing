@@ -61,6 +61,12 @@ public:
     }
 };
 
+class IPhone : public Phone {
+public:
+    std::string Operation() const override {
+        return "Создаем модель IPhone";
+    }
+};
 
 
 int main() {
