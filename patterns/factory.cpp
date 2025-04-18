@@ -50,7 +50,7 @@ class Factory {
 
 class Phone {
 public:
-    virtual ~Product() = default;
+    virtual ~Phone() = default;
     virtual std::string Operation() const = 0;
 };
 
@@ -72,7 +72,7 @@ public:
 class Creator {
 public:
     virtual ~Creator() = default;
-    virtual std::unique_ptr<Product> FactoryMethod() const = 0;
+    virtual std::unique_ptr<Phone> FactoryMethod() const = 0;
     
     std::string SomeOperation() const {
         // Вызываем фабричный метод для создания объекта Product
@@ -83,6 +83,27 @@ public:
     }
 };
 
+// Конкретные создатели переопределяют фабричный метод
+class SamsungCreator : public Creator {
+public:
+    std::unique_ptr<Phone> FactoryMethod() const override {
+        return std::make_unique<Samsung>();
+    }
+};
+
+class IPhoneCreator : public Creator {
+public:
+    std::unique_ptr<Phone> FactoryMethod() const override {
+        return std::make_unique<IPhone>();
+    }
+};
+
+
+// Клиентский код
+void ClientCode(const Creator& creator) {
+    std::cout << "Клиент: Я не знаю класс создателя, но он все еще работает.\n"
+              << creator.SomeOperation() << std::endl;
+}
 
 
 int main() {
@@ -92,6 +113,18 @@ int main() {
 
     auto productB = Factory::CreateProduct(Factory::PRODUCT_B);
     productB -> Use();
+
+
+    std::cout << "Приложение запущено с SamsungCreator.\n";
+    std::unique_ptr<Creator> creator = std::make_unique<SamsungCreator>();
+    ClientCode(*creator);
+
+    std::cout << "\n";
+
+    std::cout << "Приложение запущено с IPhoneCreatorB.\n";
+    creator = std::make_unique<IPhoneCreator>();
+    ClientCode(*creator);
+
 
     return 0;
 }
