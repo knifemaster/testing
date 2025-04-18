@@ -6,7 +6,7 @@
 class Product {
     public:
         virtual ~Product() = default;
-        virtual void Use = 0;
+        virtual void Use() = 0;
 
 };
 
@@ -46,6 +46,14 @@ class Factory {
         }
 
 };
+
+
+class Phone {
+public:
+    virtual ~Product() = default;
+    virtual std::string Operation() const = 0;
+};
+
 
 
 int main() {
