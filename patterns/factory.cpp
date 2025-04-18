@@ -68,6 +68,22 @@ public:
     }
 };
 
+// Класс Creator (создатель) - абстрактная фабрика
+class Creator {
+public:
+    virtual ~Creator() = default;
+    virtual std::unique_ptr<Product> FactoryMethod() const = 0;
+    
+    std::string SomeOperation() const {
+        // Вызываем фабричный метод для создания объекта Product
+        std::unique_ptr<Phone> phone = this->FactoryMethod();
+        // Используем телефон
+        std::string result = "Creator: Тот же код создателя работает с " + phone->Operation();
+        return result;
+    }
+};
+
+
 
 int main() {
     
