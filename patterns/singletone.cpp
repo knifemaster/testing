@@ -28,9 +28,18 @@ Singleton* Singleton::instance = nullptr;
 
 int main() {
 
-    Singleton* singleton = getInstance();
+    Singleton* singleton1 = Singleton::getInstance();
+    Singleton* singleton2 = Singleton::getInstance();
 
-    singleton-> someMethod 
+    // Проверяем, что это один и тот же объект
+    std::cout << "singleton1 адрес: " << singleton1 << std::endl;
+    std::cout << "singleton2 адрес: " << singleton2 << std::endl;
+
+    // Вызываем метод
+    singleton1->someMethod();
+ 
+
+    //singleton->someMethod();
 
 
 
