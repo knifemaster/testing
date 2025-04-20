@@ -19,3 +19,20 @@ class ISubject {
         virtual void detach(std::shared_ptr<IObserver> observer) = 0;
         virtual void notify() = 0;
 };
+
+
+class Subject : public ISubject {
+    private:
+        std::vector<std::shared_ptr<IObserver>> observers;
+        std::string state;
+
+    public:
+        void attach(std::shared_ptr<IObserver> observer) override {
+            observers.push_back(observer);
+        }
+
+        void detach(std::shared_ptr<IObserver> observer) override {
+            observers.erase(std::remove(observers.begin(), observers.end(), observer), observers.end());
+        }
+
+}
