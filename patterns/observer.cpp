@@ -1,70 +1,70 @@
 #include <iostream>
-#include <string>
 #include <vector>
+#include <algorithm>
 #include <memory>
 
-
+// Абстрактный класс Наблюдателя
 class IObserver {
-    public:
-        virtual ~IObserver() = default;
-        virtual void update(const std::string& message) = 0;
+public:
+    virtual ~IObserver() = default;
+    virtual void update(const std::string& message) = 0;
+};
 
-}
-
-
+// Абстрактный класс Субъекта (Observable)
 class ISubject {
-    public:
-        virtual ~ISubject() = default;
-        virtual void attach(std::shared_ptr<IObserver> observer) = 0;
-        virtual void detach(std::shared_ptr<IObserver> observer) = 0;
-        virtual void notify() = 0;
+public:
+    virtual ~ISubject() = default;
+    virtual void attach(std::shared_ptr<IObserver> observer) = 0;
+    virtual void detach(std::shared_ptr<IObserver> observer) = 0;
+    virtual void notify() = 0;
 };
 
-
+// Конкретный Субъект
 class Subject : public ISubject {
-    private:
-        std::vector<std::shared_ptr<IObserver>> observers;
-        std::string state;
+private:
+    std::vector<std::shared_ptr<IObserver>> observers;
+    std::string state;
 
-    public:
-        void attach(std::shared_ptr<IObserver> observer) override {
-            observers.push_back(observer);
+public:
+    void attach(std::shared_ptr<IObserver> observer) override {
+        observers.push_back(observer);
+    }
+
+    void detach(std::shared_ptr<IObserver> observer) override {
+        observers.erase(
+            std::remove(observers.begin(), observers.end(), observer),
+            observers.end()
+        );
+    }
+
+    void notify() override {
+        for (const auto& observer : observers) {
+            observer->update(state);
         }
+    }
 
-        void detach(std::shared_ptr<IObserver> observer) override {
-            observers.erase(std::remove(observers.begin(), observers.end(), observer), observers.end());
-        }
+    void setState(const std::string& newState) {
+        state = newState;
+        notify();
+    }
 
-        void notify() override {
-            for (const auto& observer : observers) {
-                observer->update(state);
-            }
-        }
-
-        void setState(const std::string& newState) {
-            state = newState;
-            notify();
-        }
-
-        std::string getState() const {
-            return state;
-        }
-
+    std::string getState() const {
+        return state;
+    }
 };
 
-class ConcereteObserver: public IObserver {
-    private:
-        std::string name;
+// Конкретный Наблюдатель
+class ConcreteObserver : public IObserver {
+private:
+    std::string name;
 
-    public:
-        explicit ConcreteObserver(const std::string& name) : name(name) {}
+public:
+    explicit ConcreteObserver(const std::string& name) : name(name) {}
 
-        void update(const std::string& message) override {
-            std::cout << "Observer " << name << " received: " << message << "\n";
-        }
-
+    void update(const std::string& message) override {
+        std::cout << "Observer " << name << " received: " << message << std::endl;
+    }
 };
-
 
 // Пример использования
 int main() {
@@ -92,3 +92,53 @@ int main() {
 
     return 0;
 }
+
+
+/*
+#include <iostream>
+#include <vector>
+#include <functional>
+#include <memory>
+
+class Subject {
+private:
+    std::vector<std::function<void(const std::string&)>> observers;
+    std::string state;
+
+public:
+    void attach(const std::function<void(const std::string&)>& observer) {
+        observers.push_back(observer);
+    }
+
+    void notify() {
+        for (const auto& observer : observers) {
+            observer(state);
+        }
+    }
+
+    void setState(const std::string& newState) {
+        state = newState;
+        notify();
+    }
+};
+
+int main() {
+    Subject subject;
+
+    // Подписываем лямбда-функции как наблюдателей
+    auto observer1 = [](const std::string& msg) {
+        std::cout << "Observer 1: " << msg << std::endl;
+    };
+
+    auto observer2 = [](const std::string& msg) {
+        std::cout << "Observer 2: " << msg << std::endl;
+    };
+
+    subject.attach(observer1);
+    subject.attach(observer2);
+
+    subject.setState("First notification");
+    subject.setState("Second notification");
+
+    return 0;
+}*/
