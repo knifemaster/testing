@@ -51,3 +51,44 @@ class Subject : public ISubject {
         }
 
 };
+
+class ConcereteObserver: public IObserver {
+    private:
+        std::string name;
+
+    public:
+        explicit ConcreteObserver(const std::string& name) : name(name) {}
+
+        void update(const std::string& message) override {
+            std::cout << "Observer " << name << " received: " << message << "\n";
+        }
+
+};
+
+
+// Пример использования
+int main() {
+    // Создаем субъект
+    auto subject = std::make_shared<Subject>();
+
+    // Создаем наблюдателей
+    auto observer1 = std::make_shared<ConcreteObserver>("Observer 1");
+    auto observer2 = std::make_shared<ConcreteObserver>("Observer 2");
+    auto observer3 = std::make_shared<ConcreteObserver>("Observer 3");
+
+    // Подписываем наблюдателей
+    subject->attach(observer1);
+    subject->attach(observer2);
+    subject->attach(observer3);
+
+    // Изменяем состояние субъекта (наблюдатели получат уведомления)
+    subject->setState("First state change");
+
+    // Отписываем одного наблюдателя
+    subject->detach(observer2);
+
+    // Еще одно изменение состояния
+    subject->setState("Second state change");
+
+    return 0;
+}
