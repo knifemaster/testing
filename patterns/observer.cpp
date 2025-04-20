@@ -35,4 +35,19 @@ class Subject : public ISubject {
             observers.erase(std::remove(observers.begin(), observers.end(), observer), observers.end());
         }
 
-}
+        void notify() override {
+            for (const auto& observer : observers) {
+                observer->update(state);
+            }
+        }
+
+        void setState(const std::string& newState) {
+            state = newState;
+            notify();
+        }
+
+        std::string getState() const {
+            return state;
+        }
+
+};
