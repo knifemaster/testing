@@ -1,5 +1,5 @@
 #include <cstdio>
-
+#include <utility>
 
 struct Lifetime {
     Lifetime() noexcept { puts("Lifetime() [default constructor]"); }
@@ -39,7 +39,9 @@ Lifetime f3() {
 int main() {
 //    Lifetime l = f3();
 
-    auto l = []() { Lifetime{}; return f3(); };
-    l();
-
+//    auto l = []() { Lifetime{}; return f3(); };
+//    l();
+    auto lt = Lifetime{};
+    auto l = [lt = std::move(lt)] () {};
+    auto l2 = l;
 }
