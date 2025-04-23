@@ -36,6 +36,12 @@ public:
     }
 };
 
+class Cat : public Animal<Cat> {
+public:
+    void SpeakImpl() {
+        std::cout << "Meow!" << std::endl;
+    }
+};
 
 
 int main() {
