@@ -18,6 +18,19 @@ int Counter<T>::count = 0;
 
 class MyClass : public Counter<MyClass> {};
 
+
+
+template <typename Derived>
+class Animal {
+public:
+    void Speak() {
+        static_cast<Derived*>(this)->SpeakImpl(); // Вызов метода производного класса
+    }
+};
+
+
+
+
 int main() {
     MyClass a, b, c;
     MyClass::PrintCount();
