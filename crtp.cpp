@@ -47,6 +47,13 @@ public:
 int main() {
     MyClass a, b, c;
     MyClass::PrintCount();
+
+    Dog dog;
+    Cat cat;
+
+    dog.Speak(); // Woof!
+    cat.Speak(); // Meow!
+
     return 0;
 
 }
