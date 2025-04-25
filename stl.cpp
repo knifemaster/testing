@@ -166,8 +166,11 @@ int main() {
     }
     std::cout << std::endl;
 
-
-
+    std::vector<char> v4 {'a', 'b', 'c', 'd', 'e', 'f', 'g'};
+    auto take_chars = std::ranges::take_while_view(v4, [](char character) { return character != 'd'; });
+    for (const auto& character : take_chars) {
+        std::cout << character << " ";
+    }
     return 0;
 
 }
