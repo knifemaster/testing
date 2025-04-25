@@ -159,6 +159,13 @@ int main() {
         std::cout << std::endl;
     }
     
+    std::vector<int> v3 { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    auto take_while = std::ranges::take_while_view(v3, [](int value) { return value < 8; });
+    for (const auto& take : take_while) {
+        std::cout << take << " ";
+    }
+    std::cout << std::endl;
+
 
 
     return 0;
