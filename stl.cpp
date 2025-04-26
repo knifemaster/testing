@@ -15,6 +15,8 @@
 #include <bit>
 #include <forward_list>
 #include <initializer_list>
+#include <string_view>
+
 
 template<class Iter>
 void merge_sort(Iter first, Iter last) {
@@ -171,6 +173,10 @@ int main() {
     for (const auto& character : take_chars) {
         std::cout << character << " ";
     }
+
+    using namespace std::literals;
+    const auto string_views = {"Hello"sv, "World", "test", "dog"};
+
     return 0;
 
 }
