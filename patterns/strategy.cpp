@@ -180,6 +180,9 @@ int main() {
     warrior.setStrategy(std::make_unique<DefendStrategy>("щит", 10));
     warrior.performAction();
 
+    warrior.setStrategy(std::make_unique<MoveStrategy>("вперед", 50));
+    warrior.performAction();
+    warrior.performAction();
     archer.setStrategy(std::make_unique<MoveStrategy>("назад", 3));
     archer.performAction();
 
