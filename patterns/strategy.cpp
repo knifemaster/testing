@@ -72,6 +72,16 @@ public:
 };
 
 
+
+class ActionStrategy {
+public:
+    virtual ~ActionStrategy() = default;
+    virtual void execute() const = 0;
+};
+
+
+
+
 int main() {
     PaymentProcessor processor;
 
