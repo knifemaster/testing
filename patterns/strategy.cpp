@@ -110,6 +110,22 @@ public:
 };
 
 
+class DefendStrategy : public ActionStrategy {
+private:
+    std::string shieldType;
+    int blockPower;
+
+public:
+    DefendStrategy(const std::string& shield, int block)
+        : shieldType(shield), blockPower(block) {}
+
+    void execute() const override {
+        std::cout << "Защищаюсь с помощью " << shieldType
+                  << " и блокирую " << blockPower << " урона!" << std::endl;
+    }
+};
+
+
 
 int main() {
     PaymentProcessor processor;
