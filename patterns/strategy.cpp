@@ -80,7 +80,19 @@ public:
 };
 
 
+class MoveStrategy : public ActionStrategy {
+private:
+    std::string direction;
+    int speed;
 
+public:
+    MoveStrategy(const std::string& dir, int spd) : direction(dir), speed(spd) {}
+
+    void execute() const override {
+        std::cout << "Двигаюсь в направлении " << direction 
+                  << " со скоростью " << speed << std::endl;
+    }
+};
 
 int main() {
     PaymentProcessor processor;
