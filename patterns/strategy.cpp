@@ -126,6 +126,29 @@ public:
 };
 
 
+class Character {
+private:
+    std::unique_ptr<ActionStrategy> currentStrategy;
+    std::string name;
+
+public:
+    Character(const std::string& charName) : name(charName) {}
+
+    void setStrategy(std::unique_ptr<ActionStrategy> strategy) {
+        currentStrategy = std::move(strategy);
+    }
+
+    void performAction() const {
+        std::cout << name << ": ";
+        if (currentStrategy) {
+            currentStrategy->execute();
+        } else {
+            std::cout << "Не выбрана стратегия действия!" << std::endl;
+        }
+    }
+};
+
+
 
 int main() {
     PaymentProcessor processor;
