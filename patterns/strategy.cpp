@@ -165,5 +165,25 @@ int main() {
     processor.setPaymentStrategy(std::make_unique<CryptoPayment>("0xABC123DEF456"));
     processor.executePayment(0.1);
 
+
+    Character warrior("Воин");
+    Character archer("Лучник");
+
+    
+    warrior.setStrategy(std::make_unique<MoveStrategy>("вперед", 5));
+    warrior.performAction();
+
+    archer.setStrategy(std::make_unique<AttackStrategy>("лук", 15));
+    archer.performAction();
+
+    
+    warrior.setStrategy(std::make_unique<DefendStrategy>("щит", 10));
+    warrior.performAction();
+
+    archer.setStrategy(std::make_unique<MoveStrategy>("назад", 3));
+    archer.performAction();
+
+
+
     return 0;
 }
