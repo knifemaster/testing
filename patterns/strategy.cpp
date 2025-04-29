@@ -94,6 +94,23 @@ public:
     }
 };
 
+
+class AttackStrategy : public ActionStrategy {
+private:
+    std::string weapon;
+    int damage;
+
+public:
+    AttackStrategy(const std::string& wpn, int dmg) : weapon(wpn), damage(dmg) {}
+
+    void execute() const override {
+        std::cout << "Атакую с помощью " << weapon 
+                  << " и наношу " << damage << " урона!" << std::endl;
+    }
+};
+
+
+
 int main() {
     PaymentProcessor processor;
 
