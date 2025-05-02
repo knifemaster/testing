@@ -86,3 +86,22 @@ public:
 std::unique_ptr<Iterator> CharacterList::createIterator() {
     return std::make_unique<CharacterIterator>(this);
 }
+
+int main() {
+    CharacterList party;
+    party.addCharacter(GameCharacter("Воин", 100));
+    party.addCharacter(GameCharacter("Маг", 80));
+    party.addCharacter(GameCharacter("Лучник", 90));
+
+    auto iterator = party.createIterator();
+
+    while (iterator->hasNext()) {
+        GameCharacter* character = iterator->next();
+        if (character) {
+            character->display();
+            character->attack();
+        }
+    }
+
+    return 0;
+}
