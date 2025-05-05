@@ -22,6 +22,34 @@ public:
             current_pos = 0;
         }
 
+        RingIterator& operator++() {
+            current_pos++;
+
+            if (current_vec == &top_vec && current_pos >= top_vec.size()) {
+                current_vec = &down_vec;
+                current_pos = 0;
+            }
+            else if (current_vec == &down_vec && current_pos >= down_vec.size()) {
+                current_vec = &top_vec;
+                current_pos = 0;
+            }
+
+            if (current_vec == &top_vec && current_pos == 0) {
+                is_end = true;
+            }
+
+            return *this;
+        }
+
+        reference operator*() {
+            return (*current_vec)[current_pos];
+        }
+
+        bool operator!=(const RingIterator& other) const {
+            return is_end != other.is_end ||
+                   current_vec != other.current_vec ||
+                   current_pos != other.current_pos;
+        }
 
 int main() {
 
