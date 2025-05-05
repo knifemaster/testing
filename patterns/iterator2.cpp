@@ -51,7 +51,32 @@ public:
                    current_pos != other.current_pos;
         }
 
+    private:
+        std::vector<int>& top_vec;
+        std::vector<int>& down_vec;
+        std::vector<int>* current_vec;
+        size_t current_pos;
+        bool is_end = false;
+    };
+
+
+    RingIterator begin() {
+        return RingIterator(top, down);
+    }
+
+    RingIterator end() {
+        return RingIterator(top, down, true);
+    }
+};
+
+
 int main() {
+    
+    Ring ring;
+
+    for (int val : ring) {
+        std::cout << val << " ";
+    }
 
 
     return 0;
