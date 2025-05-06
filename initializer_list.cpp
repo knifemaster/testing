@@ -5,7 +5,7 @@
 template<typename T>
 class MyContainer {
     public:
-        explicit MyContainer(std::initializer_list<T> list) noexcept {
+        MyContainer(std::initializer_list<T> list) noexcept {
             data.reserve(list.size());
             for (const T& num : list) {
                 data.emplace_back(num);
