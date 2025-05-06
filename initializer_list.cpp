@@ -6,8 +6,11 @@ template<typename T>
 class MyContainer {
     public:
         MyContainer(std::initializer_list<T> list) {
+        
+        data.reserve(list.size());
+
             for (const T& num : list) {
-                data.push_back(num);
+                data.emplace_back(num);
             }
         }
 
