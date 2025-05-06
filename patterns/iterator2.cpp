@@ -73,8 +73,17 @@ public:
 int main() {
     
     Ring ring;
+    int i = 0;
+    for (int& val : ring) {
+        if (i == 5) break;
+        val++;
+        std::cout << val << " ";
+        i++;
+    }
 
-    for (int val : ring) {
+    std::cout << std::endl;
+
+    for (int& val : ring) {
         std::cout << val << " ";
     }
 
