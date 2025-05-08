@@ -1,4 +1,5 @@
 #include <memory_resource>
+#include <iostream>
 
 int main() {
     char buffer[1024];
@@ -13,6 +14,14 @@ int main() {
         std::cout << x << " ";
     }
     std::cout << "\n";
+
+
+    std::pmr::synchronized_pool_resource pool_for_string;
+    std::pmr::string str{"Hello, PMR!", &pool_for_string};
+
+    std::cout << str << "\n";
+
+
 
     return 0;
 }
