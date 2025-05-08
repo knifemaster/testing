@@ -1,6 +1,8 @@
 #include <memory_resource>
 #include <iostream>
 #include <map>
+#include <set>
+
 
 int main() {
     char buffer[1024];
@@ -32,6 +34,17 @@ int main() {
         std::cout << key << ": " << val << "\n";
     }
 
+
+    char set_buffer[1024];
+    std::pmr::monotonic_buffer_resource pool_for_set{std::data(set_buffer), std::size(set_buffer)};
+    std::pmr::set<int> my_set{&pool_for_set};
+    my_set.insert(1);
+    my_set.insert(2);
+    my_set.insert(3);
+
+    for (const auto& val : my_set) {
+        std::cout << val << " ";
+    }
 
 
     return 0;
