@@ -40,6 +40,9 @@ int main() {
     MyContainer<int> container = {1, 2, 3, 4, 5, 6, 7, 8, 9};
     container.print();
 
+    MyContainer<double> container2 = {1.1, 2.2, 3.3, 4.4, 5.5, 6.6, 7.7, 8.8, 9.9};
+    container2.print();
+
     std::cout << sum({1, 2, 3, 4}) << "\n";
     std::cout << sum({10, 20, 30}) << "\n";
 
