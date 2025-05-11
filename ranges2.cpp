@@ -34,6 +34,13 @@ int main() {
         std::print("{} {}\n", a, b);
     }
 
+    std::string v5 = "abc";
+    std::string v6 = "def";
+
+    for (auto&& [a, b] : rv::cartesian_product(v5, v6)) {
+        std::print("{} {}\n", a, b);
+    }
+
     std::print("{}", result);
     std::print("{}", squared);
 
