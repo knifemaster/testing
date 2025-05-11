@@ -28,7 +28,7 @@ int main() {
     }
 
     std::vector<char> v3 {'a', 'b', 'c'};
-    std::vector<char> v4 {'d', 'e', 'f'};
+    std::vector<char> v4 {'d', 'e', 'f', 'g'};
 
     for (auto&& [a, b] : rv::cartesian_product(v3, v4)) {
         std::print("{} {}\n", a, b);
