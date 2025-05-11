@@ -15,8 +15,9 @@ int main() {
 
     auto result = vs | std::views::join | std::ranges::to<std::string>();
 
-    //std::string res = vs | rv::join("-") | std::ranges::to<std::string>();
+    std::string res = vs | rv::join(std::string_view("---")) | std::ranges::to<std::string>();
 
+    std::print("{}", res);
 
     std::print("{}", result);
 
