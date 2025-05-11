@@ -20,6 +20,20 @@ int main() {
     std::vector<int> numbers = {1, 2, 3, 4, 5};
     std::deque<int> squared = numbers | rv::transform([](int n) { return n*n;}) | std::ranges::to<std::deque>();
 
+    std::vector<int> v1 {0, 1};
+    std::vector<int> v2 {2, 3};
+
+    for (auto&& [a, b] : rv::cartesian_product(v1, v2)) {
+        std::print("{} {}\n", a, b);
+    }
+
+    std::vector<char> v3 {'a', 'b', 'c'};
+    std::vector<char> v4 {'d', 'e', 'f'};
+
+    for (auto&& [a, b] : rv::cartesian_product(v3, v4)) {
+        std::print("{} {}\n", a, b);
+    }
+
     std::print("{}", result);
     std::print("{}", squared);
 
