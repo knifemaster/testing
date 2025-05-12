@@ -6,6 +6,8 @@
 #include <string>
 #include <string_view>
 #include <deque>
+#include <sstream>
+
 
 int main() {
 
@@ -36,13 +38,39 @@ int main() {
 
     std::string v5 = "abc";
     std::string v6 = "def";
-
-    for (auto&& [a, b] : rv::cartesian_product(v5, v6)) {
-        std::print("{} {}\n", a, b);
+    std::string v7 = "hij";
+    for (auto&& [a, b, c] : rv::cartesian_product(v5, v6, v7)) {
+        std::print("{} {} {}\n", a, b, c);
     }
 
-    std::print("{}", result);
-    std::print("{}", squared);
+    auto st = rv::cartesian_product(v5, v6);
+
+    std::println("{}", result);
+    std::println("{}", squared);
+
+    std::vector nums = {1, 2, 3, 4, 5};
+    for (auto [a, b] : nums | std::views::pairwise) {
+        std::cout << "(" << a << ", " << b << ") ";
+    }
+
+    std::println("plus {}", nums | std::views::pairwise_transform(std::plus()));
+
+    std::println("minus {}", nums | std::views::pairwise_transform(std::minus()));
+
+    std::println("multiply {}", nums | std::views::pairwise_transform(std::multiplies()));
+
+
+    for (const auto& val : st) {
+        std::println("{}", val);
+    }
+
+    std::vector<int> numbrz = {1, 2, 3, 4, 5};
+    auto joined = numbrz
+        | std::views::transform([](int x) { return std::to_string(x); })
+        | std::views::join
+        | std::ranges::to<std::string>();
+
+    std::cout << joined << std::endl;
 
     return 0;
 }
