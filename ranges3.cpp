@@ -18,7 +18,7 @@ int main() {
 
     auto modified_people = people
         | std::views::transform([](Person& p) {
-            p.name += "mrs";
+            p.name += " Hello";
             p.age += 20;
             return p;
         });
@@ -30,6 +30,14 @@ int main() {
         | std::views::join
         | std::ranges::to<std::string>();
 
+    auto filtered_people = people
+        | std::views::filter([](const Person& p) {
+            return p.age % 10 == 0;
+                });
+
+    for (const auto& person : filtered_people) {
+        std::print("{}", person);
+    }
     std::cout << people_str << "\n";
 
     return 0;

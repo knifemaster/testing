@@ -39,7 +39,8 @@ int main() {
     std::string v5 = "abc";
     std::string v6 = "def";
     std::string v7 = "hij";
-    for (auto&& [a, b, c] : rv::cartesian_product(v5, v6, v7)) {
+    std::string v8 = "klm";
+    for (auto&& [a, b, c, d] : rv::cartesian_product(v5, v6, v7, v8)) {
         std::print("{} {} {}\n", a, b, c);
     }
 
