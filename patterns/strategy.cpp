@@ -70,3 +70,22 @@ public:
         }
     }
 };
+
+
+int main() {
+    PaymentProcessor processor;
+
+   
+    processor.setPaymentStrategy(std::make_unique<CreditCardPayment>("1234567890123456", "123"));
+    processor.executePayment(1000);
+
+   
+    processor.setPaymentStrategy(std::make_unique<PayPalPayment>("user@example.com"));
+    processor.executePayment(500);
+
+   
+    processor.setPaymentStrategy(std::make_unique<CryptoPayment>("0xABC123DEF456"));
+    processor.executePayment(0.1);
+
+    return 0;
+}
