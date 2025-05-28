@@ -36,3 +36,17 @@ public:
         std::cout << "Оплата " << amount << " руб. через PayPal (" << email << ")" << std::endl;
     }
 };
+
+
+class CryptoPayment : public PaymentStrategy {
+private:
+    std::string walletAddress;
+
+public:
+    CryptoPayment(const std::string& walletAddress) : walletAddress(walletAddress) {}
+
+    void pay(float amount) const override {
+        std::cout << "Оплата " << amount << " руб. в криптовалюте на адрес "
+                  << walletAddress << std::endl;
+    }
+};
