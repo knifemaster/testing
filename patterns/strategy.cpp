@@ -50,3 +50,23 @@ public:
                   << walletAddress << std::endl;
     }
 };
+
+
+
+class PaymentProcessor {
+private:
+    std::unique_ptr<PaymentStrategy> strategy;
+
+public:
+    void setPaymentStrategy(std::unique_ptr<PaymentStrategy> newStrategy) {
+        strategy = std::move(newStrategy);
+    }
+
+    void executePayment(float amount) const {
+        if (strategy) {
+            strategy->pay(amount);
+        } else {
+            std::cout << "Способ оплаты не выбран!" << std::endl;
+        }
+    }
+};
