@@ -23,3 +23,16 @@ public:
                   << cardNumber.substr(cardNumber.length() - 4) << std::endl;
     }
 };
+
+
+class PayPalPayment : public PaymentStrategy {
+private:
+    std::string email;
+
+public:
+    PayPalPayment(const std::string& email) : email(email) {}
+
+    void pay(float amount) const override {
+        std::cout << "Оплата " << amount << " руб. через PayPal (" << email << ")" << std::endl;
+    }
+};
